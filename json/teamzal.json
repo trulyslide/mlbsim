@@ -1,0 +1,303 @@
+{
+    "mlbsim_teams": [{
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "bal"
+                },
+                "city": {
+                    "S": "Baltimore"
+                },
+                "nickname": {
+                    "S": "Orioles"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALE"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "bos"
+                },
+                "city": {
+                    "S": "Boston"
+                },
+                "nickname": {
+                    "S": "Red Sox"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALE"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "nyy"
+                },
+                "city": {
+                    "S": "New York"
+                },
+                "nickname": {
+                    "S": "Yankees"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALE"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "tam"
+                },
+                "city": {
+                    "S": "Tampa Bay"
+                },
+                "nickname": {
+                    "S": "Rays"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALE"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "tor"
+                },
+                "city": {
+                    "S": "Toronto"
+                },
+                "nickname": {
+                    "S": "Blue Jays"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALE"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "chw"
+                },
+                "city": {
+                    "S": "Chicago"
+                },
+                "nickname": {
+                    "S": "White Sox"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALC"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "cle"
+                },
+                "city": {
+                    "S": "Cleveland"
+                },
+                "nickname": {
+                    "S": "Indians"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALC"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "det"
+                },
+                "city": {
+                    "S": "Detroit"
+                },
+                "nickname": {
+                    "S": "Tigers"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALC"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "kc"
+                },
+                "city": {
+                    "S": "Kansas City"
+                },
+                "nickname": {
+                    "S": "Royals"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALC"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "min"
+                },
+                "city": {
+                    "S": "Minnesota"
+                },
+                "nickname": {
+                    "S": "Twins"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALC"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "ana"
+                },
+                "city": {
+                    "S": "Los Angeles"
+                },
+                "nickname": {
+                    "S": "Angels"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALW"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "hou"
+                },
+                "city": {
+                    "S": "Houston"
+                },
+                "nickname": {
+                    "S": "Astros"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALW"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "oak"
+                },
+                "city": {
+                    "S": "Oakland"
+                },
+                "nickname": {
+                    "S": "Athletics"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALW"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "sea"
+                },
+                "city": {
+                    "S": "Seattle"
+                },
+                "nickname": {
+                    "S": "Mariners"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALW"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "tex"
+                },
+                "city": {
+                    "S": "Texas"
+                },
+                "nickname": {
+                    "S": "Rangers"
+                },
+                "league": {
+                    "S": "AL"
+                },
+                "division": {
+                    "S": "ALW"
+                }
+            }
+        }
+    }]
+}

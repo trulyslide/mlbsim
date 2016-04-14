@@ -1,0 +1,10 @@
+{
+  "strikeRate": 600,
+  "contactRate": 600,
+  "foulRate": 450,
+  "hitRate": 250,
+  "doubleRate": 75,
+  "hrRate": 40,
+  "tripleRate": 5,
+  "flyRate": 650
+}

@@ -1,0 +1,303 @@
+{
+    "mlbsim_teams": [{
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "atl"
+                },
+                "city": {
+                    "S": "Atlanta"
+                },
+                "nickname": {
+                    "S": "Braves"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLE"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "mia"
+                },
+                "city": {
+                    "S": "Miami"
+                },
+                "nickname": {
+                    "S": "Marlins"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLE"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "nym"
+                },
+                "city": {
+                    "S": "New York"
+                },
+                "nickname": {
+                    "S": "Mets"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLE"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "phi"
+                },
+                "city": {
+                    "S": "Philadelphia"
+                },
+                "nickname": {
+                    "S": "Phillies"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLE"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "was"
+                },
+                "city": {
+                    "S": "Washington"
+                },
+                "nickname": {
+                    "S": "Nationals"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLE"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "chc"
+                },
+                "city": {
+                    "S": "Chicago"
+                },
+                "nickname": {
+                    "S": "Cubs"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLC"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "cin"
+                },
+                "city": {
+                    "S": "Cincinnati"
+                },
+                "nickname": {
+                    "S": "Reds"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLC"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "mil"
+                },
+                "city": {
+                    "S": "Milwaukee"
+                },
+                "nickname": {
+                    "S": "Brewers"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLC"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "pit"
+                },
+                "city": {
+                    "S": "Pittsburgh"
+                },
+                "nickname": {
+                    "S": "Pirates"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLC"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "stl"
+                },
+                "city": {
+                    "S": "St. Louis"
+                },
+                "nickname": {
+                    "S": "Cardinals"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLC"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "col"
+                },
+                "city": {
+                    "S": "Colorado"
+                },
+                "nickname": {
+                    "S": "Rockies"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLW"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "ari"
+                },
+                "city": {
+                    "S": "Arizona"
+                },
+                "nickname": {
+                    "S": "Diamondbacks"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLW"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "lad"
+                },
+                "city": {
+                    "S": "Los Angeles"
+                },
+                "nickname": {
+                    "S": "Dodgers"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLW"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "sd"
+                },
+                "city": {
+                    "S": "San Diego"
+                },
+                "nickname": {
+                    "S": "Padres"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLW"
+                }
+            }
+        }
+    }, {
+        "PutRequest": {
+            "Item": {
+                "team": {
+                    "S": "sf"
+                },
+                "city": {
+                    "S": "San Francisco"
+                },
+                "nickname": {
+                    "S": "Giants"
+                },
+                "league": {
+                    "S": "NL"
+                },
+                "division": {
+                    "S": "NLW"
+                }
+            }
+        }
+    }]
+}
