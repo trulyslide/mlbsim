@@ -6,7 +6,8 @@ from ConfigParser import SafeConfigParser
 import logging
 import datetime
 today = datetime.date.today()
-logging.basicConfig(filename='app.log',level=logging.DEBUG)
+applog = parser.get('applog','path')
+logging.basicConfig(filename=applog,level=logging.DEBUG)
 parser = SafeConfigParser()
 parser.read('settings.ini')
 
