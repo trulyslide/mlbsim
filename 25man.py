@@ -12,7 +12,7 @@ password =  parser.get('mongodb', 'password')
 
 client = MongoClient()
 db = client.mlb
-db.authenticate(username, password, source='admin')
+db.authenticate(username, password, source='mlb')
 
 db.rosters.remove( { } )
 
