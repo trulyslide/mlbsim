@@ -3,7 +3,10 @@ import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 from ConfigParser import SafeConfigParser
-
+import logging
+import datetime
+today = datetime.date.today()
+logging.basicConfig(filename='app.log',level=logging.DEBUG)
 parser = SafeConfigParser()
 parser.read('settings.ini')
 
@@ -49,3 +52,4 @@ for team in items:
             	}
         	)
 	print "Loaded" + teamID
+logging.info(today + ': Rosters Updated')
