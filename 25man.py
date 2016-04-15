@@ -6,10 +6,11 @@ from ConfigParser import SafeConfigParser
 import logging
 import datetime
 today = datetime.date.today()
-applog = parser.get('applog','path')
-logging.basicConfig(filename=applog,level=logging.DEBUG)
+
 parser = SafeConfigParser()
 parser.read('settings.ini')
+applog = parser.get('applog','path')
+logging.basicConfig(filename=applog,level=logging.DEBUG)
 
 username =  parser.get('mongodb', 'username')
 password =  parser.get('mongodb', 'password')
@@ -53,4 +54,4 @@ for team in items:
             	}
         	)
 	print "Loaded" + teamID
-logging.info(today + ': Rosters Updated')
+logging.info(str(today) + ': Rosters Updated')
