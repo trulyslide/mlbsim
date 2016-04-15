@@ -6,6 +6,8 @@ from pymongo import MongoClient
 client = MongoClient()
 db = client.mlb
 
+db.rosters.remove( { } )
+
 items = db.teams.find()
 for team in items:
 	teamID = team['team']
