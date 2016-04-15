@@ -2,9 +2,17 @@ from lxml import html
 import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
+from ConfigParser import SafeConfigParser
+
+parser = SafeConfigParser()
+parser.read('settings.ini')
+
+username =  parser.get('mongodb', 'username')
+password =  parser.get('mongodb', 'password')
 
 client = MongoClient()
 db = client.mlb
+db.authenticate(username, password, source='admin')
 
 db.rosters.remove( { } )
 
