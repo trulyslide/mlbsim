@@ -1,8 +1,12 @@
 from datetime import datetime
 from pymongo import MongoClient
 
+username =  parser.get('mongodb', 'username')
+password =  parser.get('mongodb', 'password')
+
 client = MongoClient()
 db = client.mlb
+db.authenticate(username, password)
 
 today = int(datetime.today().strftime("%Y%m%d"))
 
