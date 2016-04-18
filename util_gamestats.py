@@ -13,5 +13,7 @@ for date in dates:
 	month = dateStr[4:6]
 	day = dateStr[-2:]
 	url = "http://gd2.mlb.com/components/game/mlb/year_" + year + "/month_" + month + "/day_" + day + "/miniscoreboard.json"
-	json.load(urllib2.urlopen(url))
+	scoreboard = json.load(urllib2.urlopen(url))
+	games = scoreboard['data']['games']['game']
+	print count(data)
 	break
