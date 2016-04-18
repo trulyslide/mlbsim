@@ -1,15 +1,5 @@
 from datetime import datetime
-from pymongo import MongoClient
-from ConfigParser import SafeConfigParser
-
-parser = SafeConfigParser()
-parser.read('settings.ini')
-username =  parser.get('mongodb', 'username')
-password =  parser.get('mongodb', 'password')
-
-client = MongoClient()
-db = client.mlb
-db.authenticate(username, password)
+import mongo_connect
 
 today = int(datetime.today().strftime("%Y%m%d"))
 
