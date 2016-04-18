@@ -1,5 +1,6 @@
 from datetime import datetime
 from pymongo import MongoClient
+from ConfigParser import SafeConfigParser
 
 parser = SafeConfigParser()
 parser.read('settings.ini')
