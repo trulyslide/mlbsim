@@ -1,6 +1,8 @@
 from datetime import datetime
 from pymongo import MongoClient
 
+parser = SafeConfigParser()
+parser.read('settings.ini')
 username =  parser.get('mongodb', 'username')
 password =  parser.get('mongodb', 'password')
 
