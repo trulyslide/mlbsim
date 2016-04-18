@@ -3,6 +3,7 @@ import mongo_connect
 
 today = int(datetime.today().strftime("%Y%m%d"))
 
+db = mongo_connect.connect()
 dates = db.game_dates.find({"date": {"$gt": 20160101,"$lt": today}})
 for date in dates:
 	dateStr =  str(date['date'])
