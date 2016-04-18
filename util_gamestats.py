@@ -13,5 +13,5 @@ for date in dates:
 	month = dateStr[4:6]
 	day = dateStr[-2:]
 	url = "http://gd2.mlb.com/components/game/mlb/year_" + year + "/month_" + month + "/day_" + day + "/miniscoreboard.json"
-	print url
-	#json.load(urllib2.urlopen("url"))
+	json.loads(urllib2.urlopen("url"))
+	break
