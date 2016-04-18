@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from ConfigParser import SafeConfigParser
 
-def connect:
+def connect():
   parser = SafeConfigParser()
   parser.read('settings.ini')
   username =  parser.get('mongodb', 'username')
