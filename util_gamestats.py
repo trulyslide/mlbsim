@@ -2,6 +2,7 @@ from datetime import datetime
 import mongo_connect
 import json
 import urllib2
+import util_gamestats_game
 
 db = mongo_connect.connect()
 today = int(datetime.today().strftime("%Y%m%d"))
@@ -15,5 +16,11 @@ for date in dates:
 	url = "http://gd2.mlb.com/components/game/mlb/year_" + year + "/month_" + month + "/day_" + day + "/miniscoreboard.json"
 	scoreboard = json.load(urllib2.urlopen(url))
 	games = scoreboard['data']['games']['game']
-	print len(games)
+	for game in games:
+		gameday_link = game['game_data_directory']
+		gameID = game['gameday_link']
+		gameURL = "http://gd2.mlb.com" + gameday_link + "/inning/inning_all.xml"
+		gameData = urllib2.urlopen(gameURL)
+		util_gamestats_game.parseGameData(gameData,gameID)
+		break
 	break
