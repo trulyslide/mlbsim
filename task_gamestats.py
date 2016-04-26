@@ -25,5 +25,4 @@ for game in games:
 	if(game_type == "R" and status != "Postponed"):
 		gameURL = "http://gd2.mlb.com" + gameday_link + "/inning/inning_all.xml"
 		gameData = urllib2.urlopen(gameURL)
-		#util_gamestats_game.parseGameData(gameData,gameID,formattedDate)
-	break
+		util_gamestats_game.parseGameData(gameData,gameID,formattedDate)
