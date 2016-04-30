@@ -7,7 +7,11 @@ import util_gamestats_game
 db = mongo_connect.connect()
 today = int(datetime.today().strftime("%Y%m%d"))
 
-dates = db.game_dates.find({"date": {"$gt": 20160401,"$lt": today}})
+latestQ = db.batter_PA.find_one(sort=[("date", -1)])
+latest = latestQ['date']
+print latest
+
+dates = db.game_dates.find({"date": {"$gt": latest,"$lt": today}})
 for date in dates:
 	dateStr =  str(date['date'])
 	year = dateStr[:4]
