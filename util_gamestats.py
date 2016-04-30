@@ -8,7 +8,8 @@ db = mongo_connect.connect()
 today = int(datetime.today().strftime("%Y%m%d"))
 
 latestQ = db.batter_PA.find_one(sort=[("date", -1)])
-latest = int(latestQ['date'])
+latest = latestQ['date']
+latest = int(latest.replace("_", ""))
 print latest
 
 dates = db.game_dates.find({"date": {"$gt": latest,"$lt": today}})
