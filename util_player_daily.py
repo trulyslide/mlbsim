@@ -1,15 +1,10 @@
 import MySQLdb
-import boto3
-from boto3.dynamodb.conditions import Key, Attr
+from pymongo import MongoClient
+
+client = MongoClient()
+db = client.mlb
 from datetime import datetime
 
-dynamo = boto3.resource('dynamodb')
-tableBat = dynamo.Table('mlbsim_batters')
-tablePit = dynamo.Table('mlbsim_pitchers')
-tableBatPA = dynamo.Table('mlbsim_batter_PA')
-tablePitPA = dynamo.Table('mlbsim_pitcher_PA')
-tableBatDaily = dynamo.Table('mlbsim_batter_daily')
-tablePitDaily = dynamo.Table('mlbsim_pitcher_daily')
 gameDatePrev = "";
 events = {}
 def reset(events):
@@ -42,8 +37,8 @@ def loadDate(events,playerID):
 	eventDate = events['date']
 	dateObject = datetime.strptime(eventDate, '%Y_%m_%d')
 	dynamoDate = int(dateObject.strftime('%Y%m%d'))
-	tableBatDaily.put_item(
-        Item={
+	db.pitcher_PA_daily.insert_one(
+        {
             'playerID': playerID,
             'date' : dynamoDate,
             'AB' : events['AB'],
@@ -72,18 +67,15 @@ def loadDate(events,playerID):
         }
     )
 reset(events)
-batters = tableBat.scan()
+pitchers = db.pitchers.find()
 i = 0
-for batter in batters['Items']:
+for pitcher in pitchers:
 	i+=1
 	print i
-	playerID = batter['playerID']
+	playerID = pitcher['playerID']
 	print playerID
-	batterPAs = tableBatPA.query(
-    	KeyConditionExpression=Key('playerID').eq(playerID)
-    	)
-	#print batterPAs['LastEvaluatedKey']
-	for pa in batterPAs['Items']:
+	pitcherPAs = db.pitcher_PA.find( { "playerID": playerID } ).sort([("date", 1)])
+	for pa in pitcherPAs:
 		gameDate = pa['date']
 		if(gameDate != gameDatePrev and gameDatePrev != ""):
 			loadDate(events,playerID)
