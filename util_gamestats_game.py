@@ -5,6 +5,7 @@ def parseGameData(gameData,gameID,formattedDate):
 	db = mongo_connect.connect()
 	tree = ET.parse(gameData)
 	root = tree.getroot()
+	event_num = ""
 	for inning in root.iter('inning'):
 		inningNum = inning.attrib['num']
 		for side in inning:
@@ -22,7 +23,10 @@ def parseGameData(gameData,gameID,formattedDate):
 					pitcher = atbat.attrib['pitcher']
 					p_throws = atbat.attrib['p_throws']
 					des = atbat.attrib['des']
-					event_num = atbat.attrib['event_num']
+					if 'event_num' in atbat.attrib:
+						event_num = atbat.attrib['event_num']
+					else:
+						event_num = ""
 					event = atbat.attrib['event']
 					if 'play_guid' in atbat.attrib:
 						play_guid = atbat.attrib['play_guid']
