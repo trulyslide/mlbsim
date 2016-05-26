@@ -20,7 +20,8 @@ def parseGameData(gameData,gameID,formattedDate):
 					start_tfs_zulu = atbat.attrib['start_tfs_zulu']
 					batter = atbat.attrib['batter']
 					stand = atbat.attrib['stand']
-					pitcher = atbat.attrib['pitcher']
+					if 'pitcher' in atbat.attrib:
+                        pitcher = atbat.attrib['pitcher']
 					p_throws = atbat.attrib['p_throws']
 					des = atbat.attrib['des']
 					if 'event_num' in atbat.attrib:
