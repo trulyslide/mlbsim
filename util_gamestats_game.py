@@ -22,6 +22,8 @@ def parseGameData(gameData,gameID,formattedDate):
 					stand = atbat.attrib['stand']
 					if 'pitcher' in atbat.attrib:
 						pitcher = atbat.attrib['pitcher']
+					else:
+						pitcher = ""
 					p_throws = atbat.attrib['p_throws']
 					des = atbat.attrib['des']
 					if 'event_num' in atbat.attrib:
