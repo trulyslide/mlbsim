@@ -8,8 +8,10 @@ def parseGameData(gameData,gameID,formattedDate):
 	event_num = ""
 	for inning in root.iter('inning'):
 		inningNum = inning.attrib['num']
+		print inningNum
 		for side in inning:
 			inningSide = side.tag
+			print inningSide
 			for atbat in side:
 				if atbat.tag == "atbat": 
 					num = atbat.attrib['num']
