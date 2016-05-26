@@ -13,6 +13,7 @@ def parseGameData(gameData,gameID,formattedDate):
 			inningSide = side.tag
 			print inningSide
 			for atbat in side:
+				print atbat.tag
 				if atbat.tag == "atbat": 
 					num = atbat.attrib['num']
 					print num
