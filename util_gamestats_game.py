@@ -40,59 +40,59 @@ def parseGameData(gameData,gameID,formattedDate):
 					away_team_runs = atbat.attrib['away_team_runs']
 					print event_num
 					result = db.batter_PA.update(
-    				{
-    					"gameday_link" : gameID,
-    					"event_num": event_num
-    				},
-    				{
-        				"playerID" : batter,
-        				"pitcherID" : pitcher,
-        				"inning" : inningNum,
-        				"gamelink_num" : gameID,
-        				"play_guid" : play_guid,
-        				"date" : formattedDate,
-        				"p_throws" : p_throws,
-        				"event" : event,
-        				"away_team_runs" : away_team_runs,
-        				"event_num" : event_num,
-        				"stand" : stand,
-        				"start_tfs" : start_tfs,
-        				"atbat_des" : des,
-        				"inning_side" : inningSide,
-        				"b" : b,
-        				"home_team_runs" : home_team_runs,
-        				"gameday_link" : gameID,
-        				"o" : o,
-        				"s" : s,
-        				"start_tfs_zulu" : start_tfs_zulu
-    				},
-    				upsert=True)
-    				result = db.pitcher_PA.update(
-    				{
-    					"gameday_link" : gameID,
-    					"event_num": event_num
-    				},
-    				{
-        				"playerID" : pitcher,
-        				"batterID" : batter,
-        				"inning" : inningNum,
-        				"gamelink_num" : gameID,
-        				"play_guid" : play_guid,
-        				"date" : formattedDate,
-        				"p_throws" : p_throws,
-        				"event" : event,
-        				"away_team_runs" : away_team_runs,
-        				"event_num" : event_num,
-        				"stand" : stand,
-        				"start_tfs" : start_tfs,
-        				"atbat_des" : des,
-        				"inning_side" : inningSide,
-        				"b" : b,
-        				"home_team_runs" : home_team_runs,
-        				"gameday_link" : gameID,
-        				"o" : o,
-        				"s" : s,
-        				"start_tfs_zulu" : start_tfs_zulu
-    				},
-    				upsert=True)
+					{
+						"gameday_link" : gameID,
+						"event_num": event_num
+					},
+					{
+						"playerID" : batter,
+						"pitcherID" : pitcher,
+						"inning" : inningNum,
+						"gamelink_num" : gameID,
+						"play_guid" : play_guid,
+						"date" : formattedDate,
+						"p_throws" : p_throws,
+						"event" : event,
+						"away_team_runs" : away_team_runs,
+						"event_num" : event_num,
+						"stand" : stand,
+						"start_tfs" : start_tfs,
+						"atbat_des" : des,
+						"inning_side" : inningSide,
+						"b" : b,
+						"home_team_runs" : home_team_runs,
+						"gameday_link" : gameID,
+						"o" : o,
+						"s" : s,
+						"start_tfs_zulu" : start_tfs_zulu
+					},
+					upsert=True)
+					result = db.pitcher_PA.update(
+					{
+						"gameday_link" : gameID,
+						"event_num": event_num
+					},
+					{
+						"playerID" : pitcher,
+						"batterID" : batter,
+						"inning" : inningNum,
+						"gamelink_num" : gameID,
+						"play_guid" : play_guid,
+						"date" : formattedDate,
+						"p_throws" : p_throws,
+						"event" : event,
+						"away_team_runs" : away_team_runs,
+						"event_num" : event_num,
+						"stand" : stand,
+						"start_tfs" : start_tfs,
+						"atbat_des" : des,
+						"inning_side" : inningSide,
+						"b" : b,
+						"home_team_runs" : home_team_runs,
+						"gameday_link" : gameID,
+						"o" : o,
+						"s" : s,
+						"start_tfs_zulu" : start_tfs_zulu
+					},
+					upsert=True)
 	return "True"
