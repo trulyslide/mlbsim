@@ -16,12 +16,13 @@ client = MongoClient()
 db = client.mlb
 db.authenticate(username, password)
 
-db.rosters.remove( { } )
-
+batters = requests.get('http://gd2.mlb.com/components/game/mlb/year_2016/batters/').text
+pitchers = requests.get('http://gd2.mlb.com/components/game/mlb/year_2016/pitchers/').text
 items = db.teams.find()
 for team in items:
 	teamID = team['team']
-	page = requests.get('http://mlb.com/team/roster_active.jsp?c_id=' + teamID)
+	webID = team['webID']
+	page = requests.get('http://mlb.com/team/roster_active.jsp?c_id=' + webID)
 	html = page.text
 	soup = BeautifulSoup(html,"lxml")
 	div40 =  soup.find("div", {"id": "content"})
@@ -32,6 +33,7 @@ for team in items:
 	for row in rows:
 	    cols = row.find_all('td')
 	    roster.append([ele.contents for ele in cols if ele])
+	print len(roster)
 	players = []
 
 	for player in roster:
@@ -41,13 +43,24 @@ for team in items:
 			#print link
 			playerName =  link.find('a').contents[0]
 			href = link.find('a').get('href')
-			playerID = int(href[8:14])
+			playerIDstr = href[8:14]
+			playerID = int(playerIDstr)
+			if playerIDstr in batters:
+				pos = "bat"
+			if playerIDstr in pitchers:
+				pos = "pit"
+			
 			#print str(playerID) + " - " + playerName
-			db.rosters.insert_one(
+			db.rosters.update(
+           		{
+           			'playerID': playerID,
+               		'team': teamID
+           		},
            		{
                		'playerID': playerID,
                		'team': teamID,
                		'name': playerName,
-            	}
-        	)
+               		'pos' : pos
+            	},
+            	upsert=True)
 	print "Loaded" + teamID
