@@ -33,6 +33,7 @@ for game in games:
 	print homeRoster.count()
 	print awayRoster.count()
 	for player in homeRoster:
+		print player
 		#print player['name'] + " - " + player['pos']
 		playerID = str(player['playerID'])
 		#print playerID
