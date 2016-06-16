@@ -305,12 +305,12 @@ def player_daily():
 				events['Sac'] += 1
 		loadDateBatter(events,lastPlayerID)
 
-	result = db.status.update(
-	{
-		"year" : 2016
-	},
-	{
-		"year" : 2016,
-		"dateUpdated" : paDate
-	},
-	upsert=True)
+		result = db.status.update(
+		{
+			"year" : 2016
+		},
+		{
+			"year" : 2016,
+			"dateUpdated" : paDate
+		},
+		upsert=True)
