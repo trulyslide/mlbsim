@@ -1,13 +1,12 @@
 #!/usr/bin/python
 import cgitb
-from pymongo import MongoClient
+from sim import mongo_connect
 from datetime import date
 
 today = date.today()
 dateStr =  today.strftime("%Y%m%d")
 
-client = MongoClient()
-db = client.mlb
+db = mongo_connect.connect()
 
 cgitb.enable()
 print "Content-Type: text/html\n\n"
