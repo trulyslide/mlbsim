@@ -159,22 +159,22 @@ def matrix():
 					tot_SLG_adj = bat_SLG_adj
 					tot_OPS_adj = bat_OPS_adj
 
-					db.games.update(
-					{
-					'batterID': homeBatterID,
-					'pitcherID' :awayPitcherID
-					},
-					{
-					'batterID': homeBatterID,
-					'pitcherID' :awayPitcherID,
-					'1B_avg' : tot_1B_avg,
-					'2B_avg' : tot_2B_avg,
-					'3B_avg' : tot_3B_avg,
-					'HR_avg' : tot_HR_avg,
-					'H_avg' : tot_H_avg,
-					'BInf_avg' : tot_BInf_avg,
-					'GndO_avg' : tot_GndO_avg,
-					'Bunt_avg' : tot_Bunt_avg,
+				db.games.update(
+				{
+				'batterID': homeBatterID,
+				'pitcherID' :awayPitcherID
+				},
+				{
+				'batterID': homeBatterID,
+				'pitcherID' :awayPitcherID,
+				'1B_avg' : tot_1B_avg,
+				'2B_avg' : tot_2B_avg,
+				'3B_avg' : tot_3B_avg,
+				'HR_avg' : tot_HR_avg,
+				'H_avg' : tot_H_avg,
+				'BInf_avg' : tot_BInf_avg,
+				'GndO_avg' : tot_GndO_avg,
+				'Bunt_avg' : tot_Bunt_avg,
 				'LinO_avg' : tot_LinO_avg,
 				'PopO_avg' : tot_PopO_avg,
 				'FlyO_avg' : tot_FlyO_avg,
