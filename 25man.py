@@ -6,12 +6,6 @@ from ConfigParser import SafeConfigParser
 import datetime
 today = datetime.date.today()
 
-parser = SafeConfigParser()
-parser.read('settings.ini')
-
-username =  parser.get('mongodb', 'username')
-password =  parser.get('mongodb', 'password')
-
 db = mongo_connect.connect()
 
 batters = requests.get('http://gd2.mlb.com/components/game/mlb/year_2016/batters/').text
