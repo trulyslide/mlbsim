@@ -1,7 +1,7 @@
 from lxml import html
 import requests
 from bs4 import BeautifulSoup
-from pymongo import MongoClient
+import mongo_connect
 from ConfigParser import SafeConfigParser
 import datetime
 
@@ -14,9 +14,7 @@ def current_rosters():
 	username =  parser.get('mongodb', 'username')
 	password =  parser.get('mongodb', 'password')
 
-	client = MongoClient()
-	db = client.mlb
-	db.authenticate(username, password)
+	db = mongo_connect.connect()
 
 	batters = requests.get('http://gd2.mlb.com/components/game/mlb/year_2016/batters/').text
 	pitchers = requests.get('http://gd2.mlb.com/components/game/mlb/year_2016/pitchers/').text
