@@ -30,6 +30,8 @@ for game in games:
 	print home_team + " - " + away_team
 	homeRoster = db.rosters.find( { "team": home_team })
 	awayRoster = db.rosters.find( { "team": away_team })
+	print homeRoster.count()
+	print awayRoster.count()
 	for player in homeRoster:
 		#print player['name'] + " - " + player['pos']
 		playerID = str(player['playerID'])
