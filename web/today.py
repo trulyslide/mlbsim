@@ -26,6 +26,8 @@ games = db.games_prog.find({"date": 20160616})
 for game in games:
 	homeStarter = game['homeStarter']
 	awayStarter = game['awayStarter']
+	print homeStarter
+	print awayStarter
 
 	homeStarterQ = db.rosters.find_one({"playerID":homeStarter})
 	awayStarterQ = db.rosters.find_one({"playerID":awayStarter})
