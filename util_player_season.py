@@ -1,8 +1,7 @@
 import datetime
-from pymongo import MongoClient
+import mongo_connect
 
-client = MongoClient()
-db = client.mlb
+db = mongo_connect.connect()
 from datetime import datetime
 
 batterDaily = db.batter_PA_daily.find( { "date": {"$gt": 20160101 }} ).sort([("playerID", 1)])
