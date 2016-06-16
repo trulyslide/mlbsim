@@ -1,10 +1,9 @@
-from pymongo import MongoClient
+import mongo_connect
 import datetime
 from datetime import date
 
 def player_daily_adjust():
-	client = MongoClient()
-	db = client.mlb
+	db = mongo_connect.connect()
 
 	today = int(date.today().strftime('%Y%m%d'))
 	print today
