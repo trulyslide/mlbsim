@@ -112,7 +112,7 @@ def player_daily():
 
 	#find last updated date from mongo
 	dataStatus = db.status.find()
-	if(dataStatus):
+	if(dataStatus.count() > 0):
 		for data in dataStatus:
 			lastDateUpdated = data['dateUpdated']
 			print lastDateUpdated
