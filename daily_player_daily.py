@@ -117,7 +117,7 @@ def player_daily():
 			lastDateUpdated = data['dateUpdated']
 			print lastDateUpdated
 	else:
-		lastDateUpdated = 20150801
+		lastDateUpdated = int('20150801')
 	#get rows where date > lastDateUpdated
 	batterPAs = db.batter_PA.find( { "date": {"$gt": lastDateUpdated }} ).sort([("date", 1),("playerID", 1)])
 	pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": lastDateUpdated }} ).sort([("date", 1),("playerID", 1)])
