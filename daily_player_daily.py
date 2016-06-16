@@ -112,10 +112,12 @@ def player_daily():
 
 	#find last updated date from mongo
 	dataStatus = db.status.find()
-	for data in dataStatus:
-		lastDateUpdated = data['dateUpdated']
-		print lastDateUpdated
-
+	if(dataStatus):
+		for data in dataStatus:
+			lastDateUpdated = data['dateUpdated']
+			print lastDateUpdated
+	else:
+		lastDateUpdated = 20160801
 	#get rows where date > lastDateUpdated
 	batterPAs = db.batter_PA.find( { "date": {"$gt": lastDateUpdated }} ).sort([("date", 1),("playerID", 1)])
 	pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": lastDateUpdated }} ).sort([("date", 1),("playerID", 1)])
