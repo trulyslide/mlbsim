@@ -19,7 +19,7 @@ cgitb.enable()
 print "Content-Type: text/html\n\n"
 print "<table>"
 
-games = db.games_prog.find({"date": 20160615})
+games = db.games_prog.find({"date": 20160616})
 
 for game in games:
 	homeStarter = game['homeStarter']
@@ -36,8 +36,8 @@ for game in games:
 
 	homeBatters = db.games.find({"pitcherID": str(awayStarter)})
 	awayBatters = db.games.find({"pitcherID": str(homeStarter)})
-	#print str(homeBatters.count()) + "<br>"
-	#print str(awayBatters.count()) + "<br>"
+	print str(homeBatters.count()) + "<br>"
+	print str(awayBatters.count()) + "<br>"
 
 	for batter in homeBatters:
 		batterID = batter['batterID']
