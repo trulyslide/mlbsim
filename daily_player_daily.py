@@ -1,9 +1,8 @@
 import datetime
-from pymongo import MongoClient
+import mongo_connect
 
 def player_daily():
-	client = MongoClient()
-	db = client.mlb
+	db = mongo_connect.connect()
 	from datetime import datetime
 
 	events = {}
