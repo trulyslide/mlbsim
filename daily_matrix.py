@@ -5,7 +5,7 @@ import urllib2
 
 def matrix():
 	db = mongo_connect.connect()
-
+	db.games.remove({})
 	today = date.today()
 	dateStr =  today.strftime("%Y%m%d")
 
