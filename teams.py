@@ -1,5 +1,5 @@
 import mongo_connect
-
+db = mongo_connect.connect()
 db.teams.update(
 	{
     "team": "atl"
