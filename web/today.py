@@ -8,6 +8,8 @@ parentPath = os.path.abspath("..")
 if parentPath not in sys.path:
     sys.path.insert(0, parentPath)
 
+sys.path.append('/var/www/mlbsim')
+
 import mongo_connect
 
 today = date.today()
