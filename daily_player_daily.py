@@ -127,181 +127,183 @@ def player_daily():
 
 	lastPADate = ""
 	lastPlayerID = ""
-	for pa in pitcherPAs:
-		paDate =  pa['date']
-		playerID = pa['playerID']
-		events['date'] = paDate
-		if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
-			print paDate
-			print playerID
-			loadDatePitcher(events,lastPlayerID)
-			events = reset(events)
-		lastPADate = paDate
-		lastPlayerID = playerID
-		event = pa['event']
-		if event == "Single":
-			events['AB'] += 1
-			events['1B'] += 1
-			events['H'] += 1
-		if event == "Double":
-			events['AB'] += 1
-			events['2B'] += 1
-			events['H'] += 1
-		if event == "Triple":
-			events['AB'] += 1
-			events['3B'] += 1
-			events['H'] += 1
-		if event == "Home Run":
-			events['AB'] += 1
-			events['HR'] += 1
-			events['H'] += 1
-		if event == "Batter Interference":
-			events['AB'] += 1
-			events['BInf'] += 1
-		if "Bunt" in event:
-			events['Bunt'] += 1
-		if "Groundout" in event:
-			events['GndO'] += 1
-			events['AB'] += 1
-		if "Lineout" in event:
-			events['LinO'] += 1
-			events['AB'] += 1
-		if "Pop Out" in event:
-			events['PopO'] += 1
-			events['AB'] += 1
-		if "Pop Out" in event:
-			events['PopO'] += 1
-			events['AB'] += 1
-		if "Double Play" in event:
-			events['GndO'] += 1
-			events['DP'] += 1
-			events['AB'] += 1
-		if "Triple Play" in event:
-			events['GndO'] += 1
-			events['TP'] += 1
-			events['AB'] += 1
-		if "Fielders Choice" in event:
-			events['GndO'] += 1
-			events['FC'] += 1
-			events['AB'] += 1
-		if "Flyout" in event:
-			events['FlyO'] += 1
-			events['AB'] += 1
-		if "Forceout" in event:
-			events['GndO'] += 1
-			events['AB'] += 1
-		if event == "Grounded Into DP":
-			events['DP'] += 1
-			events['GndO'] += 1
-			events['AB'] += 1
-		if "Strikeout" in event:
-			events['K'] += 1
-			events['AB'] += 1
-		if event == "Catcher Interference":
-			events['CInf'] += 1
-		if event == "Fan Interference":
-			events['FInf'] += 1
-		if "Error" in event:
-			events['E'] += 1
-		if "Hit By Pitch" in event:
-			events['HBP'] += 1
-		if "Intent Walk" in event:
-			events['IBB'] += 1
-			events['BB'] += 1
-		if "Walk" in event:
-			events['BB'] += 1
-		if "Sac" in event:
-			events['Sac'] += 1
-	loadDatePitcher(events,lastPlayerID)
+	if(pitcherPAs.count() > 0):
+		for pa in pitcherPAs:
+			paDate =  pa['date']
+			playerID = pa['playerID']
+			events['date'] = paDate
+			if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
+				print paDate
+				print playerID
+				loadDatePitcher(events,lastPlayerID)
+				events = reset(events)
+			lastPADate = paDate
+			lastPlayerID = playerID
+			event = pa['event']
+			if event == "Single":
+				events['AB'] += 1
+				events['1B'] += 1
+				events['H'] += 1
+			if event == "Double":
+				events['AB'] += 1
+				events['2B'] += 1
+				events['H'] += 1
+			if event == "Triple":
+				events['AB'] += 1
+				events['3B'] += 1
+				events['H'] += 1
+			if event == "Home Run":
+				events['AB'] += 1
+				events['HR'] += 1
+				events['H'] += 1
+			if event == "Batter Interference":
+				events['AB'] += 1
+				events['BInf'] += 1
+			if "Bunt" in event:
+				events['Bunt'] += 1
+			if "Groundout" in event:
+				events['GndO'] += 1
+				events['AB'] += 1
+			if "Lineout" in event:
+				events['LinO'] += 1
+				events['AB'] += 1
+			if "Pop Out" in event:
+				events['PopO'] += 1
+				events['AB'] += 1
+			if "Pop Out" in event:
+				events['PopO'] += 1
+				events['AB'] += 1
+			if "Double Play" in event:
+				events['GndO'] += 1
+				events['DP'] += 1
+				events['AB'] += 1
+			if "Triple Play" in event:
+				events['GndO'] += 1
+				events['TP'] += 1
+				events['AB'] += 1
+			if "Fielders Choice" in event:
+				events['GndO'] += 1
+				events['FC'] += 1
+				events['AB'] += 1
+			if "Flyout" in event:
+				events['FlyO'] += 1
+				events['AB'] += 1
+			if "Forceout" in event:
+				events['GndO'] += 1
+				events['AB'] += 1
+			if event == "Grounded Into DP":
+				events['DP'] += 1
+				events['GndO'] += 1
+				events['AB'] += 1
+			if "Strikeout" in event:
+				events['K'] += 1
+				events['AB'] += 1
+			if event == "Catcher Interference":
+				events['CInf'] += 1
+			if event == "Fan Interference":
+				events['FInf'] += 1
+			if "Error" in event:
+				events['E'] += 1
+			if "Hit By Pitch" in event:
+				events['HBP'] += 1
+			if "Intent Walk" in event:
+				events['IBB'] += 1
+				events['BB'] += 1
+			if "Walk" in event:
+				events['BB'] += 1
+			if "Sac" in event:
+				events['Sac'] += 1
+		loadDatePitcher(events,lastPlayerID)
 
 	lastPADate = ""
 	lastPlayerID = ""
-	for pa in batterPAs:
-		paDate =  pa['date']
-		playerID = pa['playerID']
-		if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
-			loadDateBatter(events,lastPlayerID)
-			events = reset(events)
-			print playerID
-			print paDate
-		events['date'] = paDate
-		lastPADate = paDate
-		lastPlayerID = playerID
-		event = pa['event']
-		if event == "Single":
-			events['AB'] += 1
-			events['1B'] += 1
-			events['H'] += 1
-		if event == "Double":
-			events['AB'] += 1
-			events['2B'] += 1
-			events['H'] += 1
-		if event == "Triple":
-			events['AB'] += 1
-			events['3B'] += 1
-			events['H'] += 1
-		if event == "Home Run":
-			events['AB'] += 1
-			events['HR'] += 1
-			events['H'] += 1
-		if event == "Batter Interference":
-			events['AB'] += 1
-			events['BInf'] += 1
-		if "Bunt" in event:
-			events['Bunt'] += 1
-		if "Groundout" in event:
-			events['GndO'] += 1
-			events['AB'] += 1
-		if "Lineout" in event:
-			events['LinO'] += 1
-			events['AB'] += 1
-		if "Pop Out" in event:
-			events['PopO'] += 1
-			events['AB'] += 1
-		if "Pop Out" in event:
-			events['PopO'] += 1
-			events['AB'] += 1
-		if "Double Play" in event:
-			events['GndO'] += 1
-			events['DP'] += 1
-			events['AB'] += 1
-		if "Triple Play" in event:
-			events['GndO'] += 1
-			events['TP'] += 1
-			events['AB'] += 1
-		if "Fielders Choice" in event:
-			events['GndO'] += 1
-			events['FC'] += 1
-			events['AB'] += 1
-		if "Flyout" in event:
-			events['FlyO'] += 1
-			events['AB'] += 1
-		if "Forceout" in event:
-			events['GndO'] += 1
-			events['AB'] += 1
-		if event == "Grounded Into DP":
-			events['DP'] += 1
-			events['GndO'] += 1
-			events['AB'] += 1
-		if "Strikeout" in event:
-			events['K'] += 1
-			events['AB'] += 1
-		if event == "Catcher Interference":
-			events['CInf'] += 1
-		if event == "Fan Interference":
-			events['FInf'] += 1
-		if "Error" in event:
-			events['E'] += 1
-		if "Hit By Pitch" in event:
-			events['HBP'] += 1
-		if "Intent Walk" in event:
-			events['IBB'] += 1
-			events['BB'] += 1
-		if "Walk" in event:
-			events['BB'] += 1
-		if "Sac" in event:
-			events['Sac'] += 1
-	loadDateBatter(events,lastPlayerID)
+	if(batterPAs.count() > 0):
+		for pa in batterPAs:
+			paDate =  pa['date']
+			playerID = pa['playerID']
+			if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
+				loadDateBatter(events,lastPlayerID)
+				events = reset(events)
+				print playerID
+				print paDate
+			events['date'] = paDate
+			lastPADate = paDate
+			lastPlayerID = playerID
+			event = pa['event']
+			if event == "Single":
+				events['AB'] += 1
+				events['1B'] += 1
+				events['H'] += 1
+			if event == "Double":
+				events['AB'] += 1
+				events['2B'] += 1
+				events['H'] += 1
+			if event == "Triple":
+				events['AB'] += 1
+				events['3B'] += 1
+				events['H'] += 1
+			if event == "Home Run":
+				events['AB'] += 1
+				events['HR'] += 1
+				events['H'] += 1
+			if event == "Batter Interference":
+				events['AB'] += 1
+				events['BInf'] += 1
+			if "Bunt" in event:
+				events['Bunt'] += 1
+			if "Groundout" in event:
+				events['GndO'] += 1
+				events['AB'] += 1
+			if "Lineout" in event:
+				events['LinO'] += 1
+				events['AB'] += 1
+			if "Pop Out" in event:
+				events['PopO'] += 1
+				events['AB'] += 1
+			if "Pop Out" in event:
+				events['PopO'] += 1
+				events['AB'] += 1
+			if "Double Play" in event:
+				events['GndO'] += 1
+				events['DP'] += 1
+				events['AB'] += 1
+			if "Triple Play" in event:
+				events['GndO'] += 1
+				events['TP'] += 1
+				events['AB'] += 1
+			if "Fielders Choice" in event:
+				events['GndO'] += 1
+				events['FC'] += 1
+				events['AB'] += 1
+			if "Flyout" in event:
+				events['FlyO'] += 1
+				events['AB'] += 1
+			if "Forceout" in event:
+				events['GndO'] += 1
+				events['AB'] += 1
+			if event == "Grounded Into DP":
+				events['DP'] += 1
+				events['GndO'] += 1
+				events['AB'] += 1
+			if "Strikeout" in event:
+				events['K'] += 1
+				events['AB'] += 1
+			if event == "Catcher Interference":
+				events['CInf'] += 1
+			if event == "Fan Interference":
+				events['FInf'] += 1
+			if "Error" in event:
+				events['E'] += 1
+			if "Hit By Pitch" in event:
+				events['HBP'] += 1
+			if "Intent Walk" in event:
+				events['IBB'] += 1
+				events['BB'] += 1
+			if "Walk" in event:
+				events['BB'] += 1
+			if "Sac" in event:
+				events['Sac'] += 1
+		loadDateBatter(events,lastPlayerID)
 
 	result = db.status.update(
 	{
