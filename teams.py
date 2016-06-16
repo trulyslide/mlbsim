@@ -29,8 +29,8 @@ db.teams.update(
     "team": "nym"
     },
     {
-	"team": "nym",
-    "webID": "nyn"
+	"team": "nyn",
+    "webID": "nym"
     })
 db.teams.update(
 	{
@@ -45,8 +45,8 @@ db.teams.update(
     "team": "chc"
     },
     {
-	"team": "chc",
-    "webID": "chn"
+	"team": "chn",
+    "webID": "chc"
     })
 db.teams.update(
 	{
@@ -77,32 +77,32 @@ db.teams.update(
     "team": "stl"
     },
     {
-	"team": "stl",
-    "webID": "sln"
+	"team": "sln",
+    "webID": "stl"
     })
 db.teams.update(
 	{
     "team": "la"
     },
     {
-	"team": "la",
-    "webID": "lan"
+	"team": "lan",
+    "webID": "la"
     })
 db.teams.update(
 	{
     "team": "sf"
     },
     {
-	"team": "sf",
-    "webID": "sfn"
+	"team": "sfn",
+    "webID": "sf"
     })
 db.teams.update(
 	{
     "team": "sd"
     },
     {
-	"team": "sd",
-    "webID": "sdn"
+	"team": "sdn",
+    "webID": "sd"
     })
 db.teams.update(
 	{
@@ -141,8 +141,8 @@ db.teams.update(
     "team": "nyy"
     },
     {
-	"team": "nyy",
-    "webID": "nya"
+	"team": "nya",
+    "webID": "nyy"
     })
 db.teams.update(
 	{
@@ -157,8 +157,8 @@ db.teams.update(
     "team": "tb"
     },
     {
-	"team": "tb",
-    "webID": "tba"
+	"team": "tba",
+    "webID": "tb"
     })
 db.teams.update(
 	{
@@ -189,16 +189,16 @@ db.teams.update(
     "team": "chw"
     },
     {
-	"team": "chw",
-    "webID": "cha"
+	"team": "cha",
+    "webID": "chw"
     })
 db.teams.update(
 	{
     "team": "kc"
     },
     {
-	"team": "kc",
-    "webID": "kca"
+	"team": "kca",
+    "webID": "kc"
     })
 db.teams.update(
 	{
