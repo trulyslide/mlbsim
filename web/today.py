@@ -26,8 +26,6 @@ games = db.games_prog.find({"date": 20160616})
 for game in games:
 	homeStarter = game['homeStarter']
 	awayStarter = game['awayStarter']
-	print homeStarter
-	print awayStarter
 
 	homeStarterQ = db.rosters.find_one({"playerID":homeStarter})
 	awayStarterQ = db.rosters.find_one({"playerID":awayStarter})
@@ -40,8 +38,6 @@ for game in games:
 
 	homeBatters = db.games.find({"pitcherID": str(awayStarter)})
 	awayBatters = db.games.find({"pitcherID": str(homeStarter)})
-	print str(homeBatters.count()) + "<br>"
-	print str(awayBatters.count()) + "<br>"
 
 	for batter in homeBatters:
 		batterID = batter['batterID']
