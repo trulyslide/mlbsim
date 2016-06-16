@@ -121,7 +121,7 @@ db.teams.insert(
 db.teams.insert(
     {
 	"team": "cha",
-    "webID": "chw"
+    "webID": "cws"
     })
 db.teams.insert(
     {
