@@ -1,7 +1,14 @@
 #!/usr/bin/python
 import cgitb
-from sim import mongo_connect
+
 from datetime import date
+
+import os, sys
+parentPath = os.path.abspath("..")
+if parentPath not in sys.path:
+    sys.path.insert(0, parentPath)
+
+import mongo_connect
 
 today = date.today()
 dateStr =  today.strftime("%Y%m%d")
