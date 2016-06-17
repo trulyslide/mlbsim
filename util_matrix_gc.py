@@ -48,6 +48,28 @@ for game in games:
 		awayStarter = 0
 	if(homeStarter == None):
 		homeStarter = 0
+		
+	db.rosters.update(
+			{
+				"playerID": awayStarter,
+				"team": away_team
+			},
+			{
+				"playerID": awayStarter,
+				"team": away_team,
+				"pos": "pit"
+			})
+		db.rosters.update(
+			{
+				"playerID": homeStarter,
+				"team": home_team
+			},
+			{
+				"playerID": homeStarter,
+				"team": home_team,
+				"pos": "pit"
+			})
+			
 	awayStarterLookup = db.pitcher_season.find_one({"playerID":awayStarter})
 	if(awayStarterLookup == None):
 		print "insert blank"
