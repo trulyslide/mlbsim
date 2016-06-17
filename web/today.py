@@ -21,7 +21,7 @@ cgitb.enable()
 print "Content-Type: text/html\n\n"
 print "<table>"
 
-games = db.games_prog.find({"date": 20160616})
+games = db.games_prog.find({"date": 20160617})
 
 for game in games:
 	homeStarter = game['homeStarter']
