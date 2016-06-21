@@ -131,8 +131,8 @@ for data in dataStatus:
 	print lastDateUpdated
 
 #get rows where date > lastDateUpdated
-batterPAs = db.batter_PA.find( { "date": {"$gt": '2016_04_01' }} ).sort([("date", 1),("playerID", 1)])
-pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": '2016_04_01' }} ).sort([("date", 1),("playerID", 1)])
+batterPAs = db.batter_PA.find( { "date": {"$gt": '2015_09_01' }} ).sort([("date", 1),("playerID", 1)])
+pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": '2016_09_01' }} ).sort([("date", 1),("playerID", 1)])
 
 print batterPAs.count()
 print pitcherPAs.count()
@@ -145,7 +145,7 @@ for pa in pitcherPAs:
 	stand = pa['stand']
     	gameID = pa['gamelink_num']
 	parts = gameID.split("_")
-	park = parts[5][:3]
+	park = parts[-2][:3]
 	factors = db.factors.find_one({"team": park, "stand": stand})
     	facHR = factors['HR']
     	fac1B = factors['1B']
@@ -253,7 +253,7 @@ for pa in batterPAs:
 	stand = pa['stand']
     	gameID = pa['gamelink_num']
 	parts = gameID.split("_")
-	park = parts[5][:3]
+	park = parts[-2][:3]
 	factors = db.factors.find_one({"team": park, "stand": stand})
     	facHR = factors['HR']
     	fac1B = factors['1B']
