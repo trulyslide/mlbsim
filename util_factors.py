@@ -2,6 +2,8 @@ import mongo_connect
 
 db = mongo_connect.connect()
 
+db.factors.remove()
+ny
 db.factors.insert(
 	{
     "team" : "ana",
@@ -378,7 +380,7 @@ db.factors.insert(
 
 db.factors.insert(
 	{
-    "team" : "nym",
+    "team" : "nyn",
     "stand" : "R",
     "HR" : 1,
     "1B" : 0.931,
