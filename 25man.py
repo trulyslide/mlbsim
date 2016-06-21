@@ -41,7 +41,7 @@ for team in items:
 				pos = "bat"
 			if playerIDstr in pitchers:
 				pos = "pit"
-			bt = BeautifulSoup(str(player[3]),"lxml").get_text()
+			bt = str(BeautifulSoup(str(player[3]),"lxml").get_text())
 			print bt
 			bats = bt[:1]
 			throws = bt[:-1]
