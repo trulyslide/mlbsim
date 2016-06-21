@@ -3,7 +3,7 @@ import mongo_connect
 db = mongo_connect.connect()
 
 db.factors.remove()
-ny
+
 db.factors.insert(
 	{
     "team" : "ana",
