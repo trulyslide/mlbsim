@@ -5,6 +5,7 @@ batterPAs = db.batter_PA.find( { "date": {"$gt": '2016_01_01' }} ).sort([("date"
 for pa in batterPAs:
   stand = pa['stand']
   gameID = pa['gamelink_num']
+  print gameID
   parts = gameID.split("_")
   park = parts[5][:3]
   factors = db.factors.find_one({"team": park, "stand": stand})
