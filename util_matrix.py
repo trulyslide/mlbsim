@@ -26,15 +26,15 @@ for game in games:
 	away_team= game['away_code']
 	gameID = game['gameday_link']
 	factors_L = db.factors.find_one({"team": home_team, "stand": "L"})
-    	facHR_L = factors['HR']
-    	fac1B_L = factors['1B']
-    	fac2B_L = factors['2B']
-    	fac3B_L = factors['3B']
+    	facHR_L = factors_L['HR']
+    	fac1B_L = factors_L['1B']
+    	fac2B_L = factors_L['2B']
+    	fac3B_L = factors_L['3B']
     	factors_R = db.factors.find_one({"team": home_team, "stand": "R"})
-    	facHR_R = factors['HR']
-    	fac1B_R = factors['1B']
-    	fac2B_R = factors['2B']
-    	fac3B_R = factors['3B']
+    	facHR_R = factors_R['HR']
+    	fac1B_R = factors_R['1B']
+    	fac2B_R = factors_R['2B']
+    	fac3B_R = factors_R['3B']
 
 	print gameID
 	print home_team + " - " + away_team
