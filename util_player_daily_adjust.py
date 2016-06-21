@@ -1,9 +1,8 @@
-from pymongo import MongoClient
+import mongo_connect
 import datetime
 from datetime import date
 
-client = MongoClient()
-db = client.mlb
+db = mongo_connect.connect()
 
 today = int(date.today().strftime('%Y%m%d'))
 print today
