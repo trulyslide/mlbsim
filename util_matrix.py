@@ -373,9 +373,10 @@ for game in games:
 				tot_IBB_avg = (homePitcher['IBB_avg'] + awayBatter['IBB_avg'])/2
 				tot_BB_avg = (homePitcher['BB_avg'] + awayBatter['BB_avg'])/2
 				tot_Sac_avg = (homePitcher['Sac_avg'] + awayBatter['Sac_avg'])/2
-				tot_OBP_adj = (pit_OBP_adj + bat_OBP_adj)/2
-				tot_SLG_adj = (pit_SLG_adj + bat_SLG_adj)/2
-				tot_OPS_adj = (pit_OPS_adj + bat_OPS_adj)/2
+				tot_AB_avg = 1 - tot_CInf_avg - tot_FInf_avg - tot_E_avg - tot_HBP_avg - tot_BB_avg
+				tot_OBP_adj = tot_H_avg + tot_CInf_avg + tot_FInf_avg + tot_E_avg + tot_HBP_avg + tot_HBP_avg
+				tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
+				tot_OPS_adj = tot_OBP_adj + tot_SLG_adj
 			else:
 				tot_1B_avg =  awayBatter['1B_avg']
 				tot_2B_avg = awayBatter['2B_avg']
@@ -398,9 +399,10 @@ for game in games:
 				tot_IBB_avg = awayBatter['IBB_avg']
 				tot_BB_avg = awayBatter['BB_avg']
 				tot_Sac_avg = awayBatter['Sac_avg']
-				tot_OBP_adj = bat_OBP_adj
-				tot_SLG_adj = bat_SLG_adj
-				tot_OPS_adj = bat_OPS_adj
+				tot_AB_avg = 1 - tot_CInf_avg - tot_FInf_avg - tot_E_avg - tot_HBP_avg - tot_BB_avg
+				tot_OBP_adj = tot_H_avg + tot_CInf_avg + tot_FInf_avg + tot_E_avg + tot_HBP_avg + tot_HBP_avg
+				tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
+				tot_OPS_adj = tot_OBP_adj + tot_SLG_adj
 			db.games.update(
 			{
 			'batterID': awayBatterID,
