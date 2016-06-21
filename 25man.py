@@ -41,18 +41,23 @@ for team in items:
 				pos = "bat"
 			if playerIDstr in pitchers:
 				pos = "pit"
-			
+			bt = BeautifulSoup(str(player[3]),"lxml")
+			print bt
+			bats = bt[:1]
+			throws = bt[:-1]
 			#print str(playerID) + " - " + playerName
 			db.rosters.update(
            		{
-           			'playerID': playerID,
+           		'playerID': playerID,
                		'team': teamID
            		},
            		{
                		'playerID': playerID,
                		'team': teamID,
                		'name': playerName,
-               		'pos' : pos
+               		'pos' : pos,
+               		'bats': bats,
+               		'throws': throws
             	},
             	upsert=True)
 	print "Loaded" + teamID
