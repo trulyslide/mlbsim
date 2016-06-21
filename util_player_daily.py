@@ -13,6 +13,11 @@ def reset(events):
 	events['3B'] = 0
 	events['HR'] = 0
 	events['H'] = 0
+	events['1Bfac'] = 0
+	events['2Bfac'] = 0
+	events['3Bfac'] = 0
+	events['HRfac'] = 0
+	events['Hfac'] = 0
 	events['BInf'] = 0
 	events['GndO'] = 0
 	events['Bunt'] = 0
@@ -50,6 +55,11 @@ def loadDateBatter(events,playerID):
 			'3B' : events['3B'],
 			'HR' : events['HR'],
 			'H' : events['H'],
+			'1Bfac' : events['1Bfac'],
+			'2Bfac' : events['2Bfac'],
+			'3Bfac' : events['3Bfac'],
+			'HRfac' : events['HRfac'],
+			'Hfac' : events['Hfac'],
 			'BInf' : events['BInf'],
 			'GndO' : events['GndO'],
 			'Bunt' : events['Bunt'],
@@ -88,6 +98,11 @@ def loadDatePitcher(events,playerID):
 			'3B' : events['3B'],
 			'HR' : events['HR'],
 			'H' : events['H'],
+			'1Bfac' : events['1Bfac'],
+			'2Bfac' : events['2Bfac'],
+			'3Bfac' : events['3Bfac'],
+			'HRfac' : events['HRfac'],
+			'Hfac' : events['Hfac'],
 			'BInf' : events['BInf'],
 			'GndO' : events['GndO'],
 			'Bunt' : events['Bunt'],
@@ -117,8 +132,8 @@ for data in dataStatus:
 	print lastDateUpdated
 
 #get rows where date > lastDateUpdated
-batterPAs = db.batter_PA.find( { "date": {"$gt": lastDateUpdated }} ).sort([("date", 1),("playerID", 1)])
-pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": lastDateUpdated }} ).sort([("date", 1),("playerID", 1)])
+batterPAs = db.batter_PA.find( { "date": {"$gt": '2015_09_01' }} ).sort([("date", 1),("playerID", 1)])
+pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": '2015_09_01' }} ).sort([("date", 1),("playerID", 1)])
 
 print batterPAs.count()
 print pitcherPAs.count()
@@ -128,10 +143,24 @@ lastPlayerID = ""
 for pa in pitcherPAs:
 	paDate =  pa['date']
 	playerID = pa['playerID']
+	stand = pa['stand']
+    	gameID = pa['gamelink_num']
+	parts = gameID.split("_")
+	park = parts[5][:3]
+	factors = db.factors.find_one({"team": park, "stand": stand})
+    	facHR = factors['HR']
+    	fac1B = factors['1B']
+    	fac2B = factors['2B']
+    	fac3B = factors['3B']
 	events['date'] = paDate
 	if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
 		print paDate
 		print playerID
+		events['HRfac'] = events['HR'] / facHR
+		events['1Bfac'] = events['1B'] / fac1B
+		events['2Bfac'] = events['2B'] / fac2B
+		events['3Bfac'] = events['3B'] / fac3B
+		events['Hfac'] = events['HRfac'] + events['1Bfac'] + events['2Bfac'] + events['3Bfac']
 		loadDatePitcher(events,lastPlayerID)
 		events = reset(events)
 	lastPADate = paDate
@@ -210,6 +239,11 @@ for pa in pitcherPAs:
 		events['BB'] += 1
 	if "Sac" in event:
 		events['Sac'] += 1
+events['HRfac'] = events['HR'] / facHR
+events['1Bfac'] = events['1B'] / fac1B
+events['2Bfac'] = events['2B'] / fac2B
+events['3Bfac'] = events['3B'] / fac3B
+events['Hfac'] = events['HRfac'] + events['1Bfac'] + events['2Bfac'] + events['3Bfac']
 loadDatePitcher(events,lastPlayerID)
 
 lastPADate = ""
@@ -217,7 +251,21 @@ lastPlayerID = ""
 for pa in batterPAs:
 	paDate =  pa['date']
 	playerID = pa['playerID']
+	stand = pa['stand']
+    	gameID = pa['gamelink_num']
+	parts = gameID.split("_")
+	park = parts[5][:3]
+	factors = db.factors.find_one({"team": park, "stand": stand})
+    	facHR = factors['HR']
+    	fac1B = factors['1B']
+    	fac2B = factors['2B']
+    	fac3B = factors['3B']
 	if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
+		events['HRfac'] = events['HR'] / facHR
+		events['1Bfac'] = events['1B'] / fac1B
+		events['2Bfac'] = events['2B'] / fac2B
+		events['3Bfac'] = events['3B'] / fac3B
+		events['Hfac'] = events['HRfac'] + events['1Bfac'] + events['2Bfac'] + events['3Bfac']
 		loadDateBatter(events,lastPlayerID)
 		events = reset(events)
 		print playerID
@@ -299,6 +347,11 @@ for pa in batterPAs:
 		events['BB'] += 1
 	if "Sac" in event:
 		events['Sac'] += 1
+events['HRfac'] = events['HR'] / facHR
+events['1Bfac'] = events['1B'] / fac1B
+events['2Bfac'] = events['2B'] / fac2B
+events['3Bfac'] = events['3B'] / fac3B
+events['Hfac'] = events['HRfac'] + events['1Bfac'] + events['2Bfac'] + events['3Bfac']
 loadDateBatter(events,lastPlayerID)
 
 result = db.status.update(
