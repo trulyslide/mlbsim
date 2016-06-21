@@ -2,7 +2,7 @@ import mongo_connect
 
 db = mongo_connect.connect()
 
-pitcherPAs =db.pitcher_PA.find()
+pitcherPAs =db.pitcher_PA.find({ "park" : { "$exists" : False } })
 for pa in pitcherPAs:
 	gameID = pa['gamelink_num']
 	print gameID
