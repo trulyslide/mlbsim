@@ -1,7 +1,7 @@
 import mongo_connect
 db = mongo_connect.connect()
 
-batterPAs = db.batter_PA.find( { "date": {"$gt": 20150101 }} ).sort([("date", 1),("playerID", 1)])
+batterPAs = db.batter_PA.find( { "date": {"$gt": '2015_01_01' }} ).sort([("date", 1),("playerID", 1)])
 for pa in batterPAs:
   stand = pa['stand']
   gameID = pa['gamelink_num']
