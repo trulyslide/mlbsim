@@ -25,6 +25,16 @@ for game in games:
 	home_team = game['home_code']
 	away_team= game['away_code']
 	gameID = game['gameday_link']
+	factors_L = db.factors.find_one({"team": home_team, "stand": "L"})
+    	facHR_L = factors['HR']
+    	fac1B_L = factors['1B']
+    	fac2B_L = factors['2B']
+    	fac3B_L = factors['3B']
+    	factors_R = db.factors.find_one({"team": home_team, "stand": "R"})
+    	facHR_R = factors['HR']
+    	fac1B_R = factors['1B']
+    	fac2B_R = factors['2B']
+    	fac3B_R = factors['3B']
 
 	print gameID
 	print home_team + " - " + away_team
@@ -40,10 +50,12 @@ for game in games:
 		if (player['pos'] == 'bat'):
 			stats = db.batter_season.find_one({ "playerID": playerID })
 			if(stats != None):
+				stats['stand'] == player['bats']
 				homeBat.append(stats)
 		if (player['pos'] == 'pit'):
 			stats = db.pitcher_season.find_one({ "playerID": playerID })
 			if(stats != None):
+				stats['throws'] == player['throws']
 				homePit.append(stats)
 	for player in awayRoster:
 		#print player['name'] + " - " + player['pos']
@@ -52,10 +64,12 @@ for game in games:
 		if (player['pos'] == 'bat'):
 			stats = db.batter_season.find_one({ "playerID": playerID })
 			if(stats != None):
+				stats['bats'] == player['bats']
 				awayBat.append(stats)
 		if (player['pos'] == 'pit'):
 			stats = db.pitcher_season.find_one({ "playerID": playerID })
 			if(stats != None):
+				stats['throws'] == player['throws']
 				awayPit.append(stats)
 
 	for homeBatter in homeBat:
@@ -91,6 +105,50 @@ for game in games:
 			pit_3B_avg = awayPitcher['3B_avg']
 			pit_HR_avg = awayPitcher['HR_avg']
 			pit_H_avg = awayPitcher['H_avg']
+			if(homeBatter['bats'] == 'L'):
+				bat_1B_avg = bat_1B_avg * fac1B_L
+				bat_2B_avg = bat_2B_avg * fac2B_L
+				bat_3B_avg = bat_3B_avg * fac3B_L
+				bat_HR_avg = bat_HR_avg * facHR_L
+				bat_H_avg = bat_H_avg * facH_L
+				pit_1B_avg = pit_1B_avg * fac1B_L
+				pit_2B_avg = pit_2B_avg * fac2B_L
+				pit_3B_avg = pit_3B_avg * fac3B_L
+				pit_HR_avg = pit_HR_avg * facHR_L
+				pit_H_avg = pit_H_avg * facH_L
+			if(homeBatter['bats'] == 'R'):
+				bat_1B_avg = bat_1B_avg * fac1B_R
+				bat_2B_avg = bat_2B_avg * fac2B_R
+				bat_3B_avg = bat_3B_avg * fac3B_R
+				bat_HR_avg = bat_HR_avg * facHR_R
+				bat_H_avg = bat_H_avg * facH_R
+				pit_1B_avg = pit_1B_avg * fac1B_R
+				pit_2B_avg = pit_2B_avg * fac2B_R
+				pit_3B_avg = pit_3B_avg * fac3B_R
+				pit_HR_avg = pit_HR_avg * facHR_R
+				pit_H_avg = pit_H_avg * facH_R
+			if(homeBatter['bats'] == 'S' and awayPitcher['throws'] == 'L'):
+				bat_1B_avg = bat_1B_avg * fac1B_R
+				bat_2B_avg = bat_2B_avg * fac2B_R
+				bat_3B_avg = bat_3B_avg * fac3B_R
+				bat_HR_avg = bat_HR_avg * facHR_R
+				bat_H_avg = bat_H_avg * facH_R
+				pit_1B_avg = pit_1B_avg * fac1B_R
+				pit_2B_avg = pit_2B_avg * fac2B_R
+				pit_3B_avg = pit_3B_avg * fac3B_R
+				pit_HR_avg = pit_HR_avg * facHR_R
+				pit_H_avg = pit_H_avg * facH_R
+			if(homeBatter['bats'] == 'S' and awayPitcher['throws'] == 'R'):
+				bat_1B_avg = bat_1B_avg * fac1B_L
+				bat_2B_avg = bat_2B_avg * fac2B_L
+				bat_3B_avg = bat_3B_avg * fac3B_L
+				bat_HR_avg = bat_HR_avg * facHR_L
+				bat_H_avg = bat_H_avg * facH_L
+				pit_1B_avg = pit_1B_avg * fac1B_L
+				pit_2B_avg = pit_2B_avg * fac2B_L
+				pit_3B_avg = pit_3B_avg * fac3B_L
+				pit_HR_avg = pit_HR_avg * facHR_L
+				pit_H_avg = pit_H_avg * facH_L
 			pit_BInf_avg = awayPitcher['BInf_avg']
 			pit_GndO_avg = awayPitcher['GndO_avg']
 			pit_Bunt_avg = awayPitcher['Bunt_avg']
@@ -229,6 +287,50 @@ for game in games:
 			pit_3B_avg = homePitcher['3B_avg']
 			pit_HR_avg = homePitcher['HR_avg']
 			pit_H_avg = homePitcher['H_avg']
+			if(awayBatter['bats'] == 'L'):
+				bat_1B_avg = bat_1B_avg * fac1B_L
+				bat_2B_avg = bat_2B_avg * fac2B_L
+				bat_3B_avg = bat_3B_avg * fac3B_L
+				bat_HR_avg = bat_HR_avg * facHR_L
+				bat_H_avg = bat_H_avg * facH_L
+				pit_1B_avg = pit_1B_avg * fac1B_L
+				pit_2B_avg = pit_2B_avg * fac2B_L
+				pit_3B_avg = pit_3B_avg * fac3B_L
+				pit_HR_avg = pit_HR_avg * facHR_L
+				pit_H_avg = pit_H_avg * facH_L
+			if(awayBatter['bats'] == 'R'):
+				bat_1B_avg = bat_1B_avg * fac1B_R
+				bat_2B_avg = bat_2B_avg * fac2B_R
+				bat_3B_avg = bat_3B_avg * fac3B_R
+				bat_HR_avg = bat_HR_avg * facHR_R
+				bat_H_avg = bat_H_avg * facH_R
+				pit_1B_avg = pit_1B_avg * fac1B_R
+				pit_2B_avg = pit_2B_avg * fac2B_R
+				pit_3B_avg = pit_3B_avg * fac3B_R
+				pit_HR_avg = pit_HR_avg * facHR_R
+				pit_H_avg = pit_H_avg * facH_R
+			if(awayBatter['bats'] == 'S' and homePitcher['throws'] == 'L'):
+				bat_1B_avg = bat_1B_avg * fac1B_R
+				bat_2B_avg = bat_2B_avg * fac2B_R
+				bat_3B_avg = bat_3B_avg * fac3B_R
+				bat_HR_avg = bat_HR_avg * facHR_R
+				bat_H_avg = bat_H_avg * facH_R
+				pit_1B_avg = pit_1B_avg * fac1B_R
+				pit_2B_avg = pit_2B_avg * fac2B_R
+				pit_3B_avg = pit_3B_avg * fac3B_R
+				pit_HR_avg = pit_HR_avg * facHR_R
+				pit_H_avg = pit_H_avg * facH_R
+			if(homeBatter['bats'] == 'S' and homePitcher['throws'] == 'R'):
+				bat_1B_avg = bat_1B_avg * fac1B_L
+				bat_2B_avg = bat_2B_avg * fac2B_L
+				bat_3B_avg = bat_3B_avg * fac3B_L
+				bat_HR_avg = bat_HR_avg * facHR_L
+				bat_H_avg = bat_H_avg * facH_L
+				pit_1B_avg = pit_1B_avg * fac1B_L
+				pit_2B_avg = pit_2B_avg * fac2B_L
+				pit_3B_avg = pit_3B_avg * fac3B_L
+				pit_HR_avg = pit_HR_avg * facHR_L
+				pit_H_avg = pit_H_avg * facH_L
 			pit_BInf_avg = homePitcher['BInf_avg']
 			pit_GndO_avg = homePitcher['GndO_avg']
 			pit_Bunt_avg = homePitcher['Bunt_avg']
