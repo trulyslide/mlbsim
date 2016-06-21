@@ -20,11 +20,11 @@ for gameDate in gameDates:
 	for batter in batterDailys:
 		playerID = batter['playerID']
 		adj_AB = batter['AB'] * adj
-		adj_1B = batter['1B'] * adj
-		adj_2B = batter['2B'] * adj
-		adj_3B = batter['3B'] * adj
-		adj_HR = batter['HR'] * adj
-		adj_H = batter['H'] * adj
+		adj_1B = batter['1Bfac'] * adj
+		adj_2B = batter['2Bfac'] * adj
+		adj_3B = batter['3Bfac'] * adj
+		adj_HR = batter['HRfac'] * adj
+		adj_H = batter['Hfac'] * adj
 		adj_BInf = batter['BInf'] * adj
 		adj_GndO = batter['GndO'] * adj
 		adj_Bunt = batter['Bunt'] * adj
@@ -77,11 +77,11 @@ for gameDate in gameDates:
 	for pitcher in pitcherDailys:
 		playerID = pitcher['playerID']
 		adj_AB = pitcher['AB'] * adj
-		adj_1B = pitcher['1B'] * adj
-		adj_2B = pitcher['2B'] * adj
-		adj_3B = pitcher['3B'] * adj
-		adj_HR = pitcher['HR'] * adj
-		adj_H = pitcher['H'] * adj
+		adj_1B = pitcher['1Bfac'] * adj
+		adj_2B = pitcher['2Bfac'] * adj
+		adj_3B = pitcher['3Bfac'] * adj
+		adj_HR = pitcher['HRfac'] * adj
+		adj_H = pitcher['Hfac'] * adj
 		adj_BInf = pitcher['BInf'] * adj
 		adj_GndO = pitcher['GndO'] * adj
 		adj_Bunt = pitcher['Bunt'] * adj
