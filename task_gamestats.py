@@ -8,7 +8,6 @@ db = mongo_connect.connect()
 yesterday = date.today() - timedelta(1)
 print yesterday
 dateStr =  yesterday.strftime("%Y%m%d")
-dateStr = "20160525"
 
 print dateStr
 year = dateStr[:4]
