@@ -8,8 +8,7 @@ today = datetime.date.today()
 
 db = mongo_connect.connect()
 
-batters = requests.get('http://gd2.mlb.com/components/game/mlb/year_2016/batters/').text
-pitchers = requests.get('http://gd2.mlb.com/components/game/mlb/year_2016/pitchers/').text
+db.rosters.remove()
 items = db.teams.find()
 for team in items:
 	teamID = team['team']
