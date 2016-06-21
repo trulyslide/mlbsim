@@ -43,8 +43,8 @@ for team in items:
 				pos = "pit"
 			bt = str(BeautifulSoup(str(player[3]),"lxml").get_text())
 			print bt
-			bats = bt[:4]
-			throws = bt[:-3]
+			bats = bt[4]
+			throws = bt[-3]
 			print bats
 			#print str(playerID) + " - " + playerName
 			db.rosters.update(
