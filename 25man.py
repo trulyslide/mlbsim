@@ -44,7 +44,7 @@ for team in items:
 			bt = BeautifulSoup(str(player[3]),"lxml").contents
 			bats = bt[:1]
 			throws = bt[:-1]
-			print bats + "/" + throws
+			print bats
 			#print str(playerID) + " - " + playerName
 			db.rosters.update(
            		{
