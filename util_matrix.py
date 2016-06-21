@@ -110,45 +110,37 @@ for game in games:
 				bat_2B_avg = bat_2B_avg * fac2B_L
 				bat_3B_avg = bat_3B_avg * fac3B_L
 				bat_HR_avg = bat_HR_avg * facHR_L
-				bat_H_avg = bat_H_avg * facH_L
 				pit_1B_avg = pit_1B_avg * fac1B_L
 				pit_2B_avg = pit_2B_avg * fac2B_L
 				pit_3B_avg = pit_3B_avg * fac3B_L
 				pit_HR_avg = pit_HR_avg * facHR_L
-				pit_H_avg = pit_H_avg * facH_L
 			if(homeBatter['bats'] == 'R'):
 				bat_1B_avg = bat_1B_avg * fac1B_R
 				bat_2B_avg = bat_2B_avg * fac2B_R
 				bat_3B_avg = bat_3B_avg * fac3B_R
 				bat_HR_avg = bat_HR_avg * facHR_R
-				bat_H_avg = bat_H_avg * facH_R
 				pit_1B_avg = pit_1B_avg * fac1B_R
 				pit_2B_avg = pit_2B_avg * fac2B_R
 				pit_3B_avg = pit_3B_avg * fac3B_R
 				pit_HR_avg = pit_HR_avg * facHR_R
-				pit_H_avg = pit_H_avg * facH_R
 			if(homeBatter['bats'] == 'S' and awayPitcher['throws'] == 'L'):
 				bat_1B_avg = bat_1B_avg * fac1B_R
 				bat_2B_avg = bat_2B_avg * fac2B_R
 				bat_3B_avg = bat_3B_avg * fac3B_R
 				bat_HR_avg = bat_HR_avg * facHR_R
-				bat_H_avg = bat_H_avg * facH_R
 				pit_1B_avg = pit_1B_avg * fac1B_R
 				pit_2B_avg = pit_2B_avg * fac2B_R
 				pit_3B_avg = pit_3B_avg * fac3B_R
 				pit_HR_avg = pit_HR_avg * facHR_R
-				pit_H_avg = pit_H_avg * facH_R
 			if(homeBatter['bats'] == 'S' and awayPitcher['throws'] == 'R'):
 				bat_1B_avg = bat_1B_avg * fac1B_L
 				bat_2B_avg = bat_2B_avg * fac2B_L
 				bat_3B_avg = bat_3B_avg * fac3B_L
 				bat_HR_avg = bat_HR_avg * facHR_L
-				bat_H_avg = bat_H_avg * facH_L
 				pit_1B_avg = pit_1B_avg * fac1B_L
 				pit_2B_avg = pit_2B_avg * fac2B_L
 				pit_3B_avg = pit_3B_avg * fac3B_L
 				pit_HR_avg = pit_HR_avg * facHR_L
-				pit_H_avg = pit_H_avg * facH_L
 			pit_BInf_avg = awayPitcher['BInf_avg']
 			pit_GndO_avg = awayPitcher['GndO_avg']
 			pit_Bunt_avg = awayPitcher['Bunt_avg']
@@ -190,9 +182,10 @@ for game in games:
 				tot_IBB_avg = (awayPitcher['IBB_avg'] + homeBatter['IBB_avg'])/2
 				tot_BB_avg = (awayPitcher['BB_avg'] + homeBatter['BB_avg'])/2
 				tot_Sac_avg = (awayPitcher['Sac_avg'] + homeBatter['Sac_avg'])/2
-				tot_OBP_adj = (pit_OBP_adj + bat_OBP_adj)/2
-				tot_SLG_adj = (pit_SLG_adj + bat_SLG_adj)/2
-				tot_OPS_adj = (pit_OPS_adj + bat_OPS_adj)/2
+				tot_AB_avg = 1 - tot_CInf_avg - tot_FInf_avg - tot_E_avg - tot_HBP_avg - tot_BB_avg
+				tot_OBP_adj = tot_H_avg + tot_CInf_avg + tot_FInf_avg + tot_E_avg + tot_HBP_avg + tot_HBP_avg
+				tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
+				tot_OPS_adj = tot_OBP_adj + tot_SLG_adj
 			else:
 				tot_1B_avg =  homeBatter['1B_avg']
 				tot_2B_avg = homeBatter['2B_avg']
@@ -215,9 +208,10 @@ for game in games:
 				tot_IBB_avg = homeBatter['IBB_avg']
 				tot_BB_avg = homeBatter['BB_avg']
 				tot_Sac_avg = homeBatter['Sac_avg']
-				tot_OBP_adj = bat_OBP_adj
-				tot_SLG_adj = bat_SLG_adj
-				tot_OPS_adj = bat_OPS_adj
+				tot_AB_avg = 1 - tot_CInf_avg - tot_FInf_avg - tot_E_avg - tot_HBP_avg - tot_BB_avg
+				tot_OBP_adj = tot_H_avg + tot_CInf_avg + tot_FInf_avg + tot_E_avg + tot_HBP_avg + tot_HBP_avg
+				tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
+				tot_OPS_adj = tot_OBP_adj + tot_SLG_adj
 
 			db.games.update(
 			{
@@ -292,45 +286,37 @@ for game in games:
 				bat_2B_avg = bat_2B_avg * fac2B_L
 				bat_3B_avg = bat_3B_avg * fac3B_L
 				bat_HR_avg = bat_HR_avg * facHR_L
-				bat_H_avg = bat_H_avg * facH_L
 				pit_1B_avg = pit_1B_avg * fac1B_L
 				pit_2B_avg = pit_2B_avg * fac2B_L
 				pit_3B_avg = pit_3B_avg * fac3B_L
 				pit_HR_avg = pit_HR_avg * facHR_L
-				pit_H_avg = pit_H_avg * facH_L
 			if(awayBatter['bats'] == 'R'):
 				bat_1B_avg = bat_1B_avg * fac1B_R
 				bat_2B_avg = bat_2B_avg * fac2B_R
 				bat_3B_avg = bat_3B_avg * fac3B_R
 				bat_HR_avg = bat_HR_avg * facHR_R
-				bat_H_avg = bat_H_avg * facH_R
 				pit_1B_avg = pit_1B_avg * fac1B_R
 				pit_2B_avg = pit_2B_avg * fac2B_R
 				pit_3B_avg = pit_3B_avg * fac3B_R
 				pit_HR_avg = pit_HR_avg * facHR_R
-				pit_H_avg = pit_H_avg * facH_R
 			if(awayBatter['bats'] == 'S' and homePitcher['throws'] == 'L'):
 				bat_1B_avg = bat_1B_avg * fac1B_R
 				bat_2B_avg = bat_2B_avg * fac2B_R
 				bat_3B_avg = bat_3B_avg * fac3B_R
 				bat_HR_avg = bat_HR_avg * facHR_R
-				bat_H_avg = bat_H_avg * facH_R
 				pit_1B_avg = pit_1B_avg * fac1B_R
 				pit_2B_avg = pit_2B_avg * fac2B_R
 				pit_3B_avg = pit_3B_avg * fac3B_R
 				pit_HR_avg = pit_HR_avg * facHR_R
-				pit_H_avg = pit_H_avg * facH_R
 			if(homeBatter['bats'] == 'S' and homePitcher['throws'] == 'R'):
 				bat_1B_avg = bat_1B_avg * fac1B_L
 				bat_2B_avg = bat_2B_avg * fac2B_L
 				bat_3B_avg = bat_3B_avg * fac3B_L
 				bat_HR_avg = bat_HR_avg * facHR_L
-				bat_H_avg = bat_H_avg * facH_L
 				pit_1B_avg = pit_1B_avg * fac1B_L
 				pit_2B_avg = pit_2B_avg * fac2B_L
 				pit_3B_avg = pit_3B_avg * fac3B_L
 				pit_HR_avg = pit_HR_avg * facHR_L
-				pit_H_avg = pit_H_avg * facH_L
 			pit_BInf_avg = homePitcher['BInf_avg']
 			pit_GndO_avg = homePitcher['GndO_avg']
 			pit_Bunt_avg = homePitcher['Bunt_avg']
