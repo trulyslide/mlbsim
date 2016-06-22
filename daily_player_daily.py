@@ -243,12 +243,12 @@ def player_daily():
 			if "Sac" in event:
 				events['Sac'] += 1
 		
-			events['HRfac'] = events['HR'] / facHR
-			events['1Bfac'] = events['1B'] / fac1B
-			events['2Bfac'] = events['2B'] / fac2B
-			events['3Bfac'] = events['3B'] / fac3B
-			events['Hfac'] = events['HRfac'] + events['1Bfac'] + events['2Bfac'] + events['3Bfac']
-			loadDatePitcher(events,lastPlayerID)
+		events['HRfac'] = events['HR'] / facHR
+		events['1Bfac'] = events['1B'] / fac1B
+		events['2Bfac'] = events['2B'] / fac2B
+		events['3Bfac'] = events['3B'] / fac3B
+		events['Hfac'] = events['HRfac'] + events['1Bfac'] + events['2Bfac'] + events['3Bfac']
+		loadDatePitcher(events,lastPlayerID)
 
 	lastPADate = ""
 	lastPlayerID = ""
