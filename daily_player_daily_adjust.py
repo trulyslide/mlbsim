@@ -20,6 +20,7 @@ def player_daily_adjust():
 		print pitcherDailys.count()
 		for batter in batterDailys:
 			playerID = batter['playerID']
+			adj_AB = batter['AB'] * adj
 			adj_1B = batter['1Bfac'] * adj
 			adj_2B = batter['2Bfac'] * adj
 			adj_3B = batter['3Bfac'] * adj
