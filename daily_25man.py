@@ -49,7 +49,9 @@ def current_rosters():
 					pos = "bat"
 				if playerIDstr in pitchers:
 					pos = "pit"
-				
+				bt = str(BeautifulSoup(str(player[3]),"lxml").get_text())
+				bats = bt[3]
+				throws = bt[-3]
 				#print str(playerID) + " - " + playerName
 				db.rosters.update(
 	           		{
@@ -60,7 +62,9 @@ def current_rosters():
 	               		'playerID': playerID,
 	               		'team': teamID,
 	               		'name': playerName,
-	               		'pos' : pos
+	               		'pos' : pos,
+	               		'bats': bats,
+               			'throws': throws
 	            	},
 	            	upsert=True)
 		print "Loaded" + teamID

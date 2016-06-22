@@ -12,6 +12,11 @@ def player_daily():
 		events['2B'] = 0
 		events['3B'] = 0
 		events['HR'] = 0
+		events['1Bfac'] = 0
+		events['2Bfac'] = 0
+		events['3Bfac'] = 0
+		events['HRfac'] = 0
+		events['Hfac'] = 0
 		events['H'] = 0
 		events['BInf'] = 0
 		events['GndO'] = 0
@@ -49,6 +54,11 @@ def player_daily():
 				'2B' : events['2B'],
 				'3B' : events['3B'],
 				'HR' : events['HR'],
+				'1Bfac' : events['1Bfac'],
+				'2Bfac' : events['2Bfac'],
+				'3Bfac' : events['3Bfac'],
+				'HRfac' : events['HRfac'],
+				'Hfac' : events['Hfac'],
 				'H' : events['H'],
 				'BInf' : events['BInf'],
 				'GndO' : events['GndO'],
@@ -87,6 +97,11 @@ def player_daily():
 				'2B' : events['2B'],
 				'3B' : events['3B'],
 				'HR' : events['HR'],
+				'1Bfac' : events['1Bfac'],
+				'2Bfac' : events['2Bfac'],
+				'3Bfac' : events['3Bfac'],
+				'HRfac' : events['HRfac'],
+				'Hfac' : events['Hfac'],
 				'H' : events['H'],
 				'BInf' : events['BInf'],
 				'GndO' : events['GndO'],
@@ -131,10 +146,24 @@ def player_daily():
 		for pa in pitcherPAs:
 			paDate =  pa['date']
 			playerID = pa['playerID']
+			stand = pa['stand']
+			gameID = pa['gamelink_num']
+			parts = gameID.split("_")
+			park = parts[-2][:3]
+			factors = db.factors.find_one({"team": park, "stand": stand})
+				facHR = factors['HR']
+				fac1B = factors['1B']
+				fac2B = factors['2B']
+				fac3B = factors['3B']
 			events['date'] = paDate
 			if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
 				print paDate
 				print playerID
+				events['HRfac'] = events['HR'] / facHR
+				events['1Bfac'] = events['1B'] / fac1B
+				events['2Bfac'] = events['2B'] / fac2B
+				events['3Bfac'] = events['3B'] / fac3B
+				events['Hfac'] = events['HRfac'] + events['1Bfac'] + events['2Bfac'] + events['3Bfac']
 				loadDatePitcher(events,lastPlayerID)
 				events = reset(events)
 			lastPADate = paDate
@@ -213,6 +242,12 @@ def player_daily():
 				events['BB'] += 1
 			if "Sac" in event:
 				events['Sac'] += 1
+		
+		events['HRfac'] = events['HR'] / facHR
+		events['1Bfac'] = events['1B'] / fac1B
+		events['2Bfac'] = events['2B'] / fac2B
+		events['3Bfac'] = events['3B'] / fac3B
+		events['Hfac'] = events['HRfac'] + events['1Bfac'] + events['2Bfac'] + events['3Bfac']
 		loadDatePitcher(events,lastPlayerID)
 
 	lastPADate = ""
@@ -221,7 +256,21 @@ def player_daily():
 		for pa in batterPAs:
 			paDate =  pa['date']
 			playerID = pa['playerID']
+			stand = pa['stand']
+    		gameID = pa['gamelink_num']
+			parts = gameID.split("_")
+			park = parts[-2][:3]
+			factors = db.factors.find_one({"team": park, "stand": stand})
+    		facHR = factors['HR']
+    		fac1B = factors['1B']
+    		fac2B = factors['2B']
+    		fac3B = factors['3B']
 			if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
+				events['HRfac'] = events['HR'] / facHR
+				events['1Bfac'] = events['1B'] / fac1B
+				events['2Bfac'] = events['2B'] / fac2B
+				events['3Bfac'] = events['3B'] / fac3B
+				events['Hfac'] = events['HRfac'] + events['1Bfac'] + events['2Bfac'] + events['3Bfac']
 				loadDateBatter(events,lastPlayerID)
 				events = reset(events)
 				print playerID
@@ -303,6 +352,11 @@ def player_daily():
 				events['BB'] += 1
 			if "Sac" in event:
 				events['Sac'] += 1
+		events['HRfac'] = events['HR'] / facHR
+		events['1Bfac'] = events['1B'] / fac1B
+		events['2Bfac'] = events['2B'] / fac2B
+		events['3Bfac'] = events['3B'] / fac3B
+		events['Hfac'] = events['HRfac'] + events['1Bfac'] + events['2Bfac'] + events['3Bfac']
 		loadDateBatter(events,lastPlayerID)
 
 		result = db.status.update(
