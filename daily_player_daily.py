@@ -258,9 +258,9 @@ def player_daily():
 			playerID = pa['playerID']
 			stand = pa['stand']
     		gameID = pa['gamelink_num']
-			parts = gameID.split("_")
-			park = parts[-2][:3]
-			factors = db.factors.find_one({"team": park, "stand": stand})
+		parts = gameID.split("_")
+		park = parts[-2][:3]
+		factors = db.factors.find_one({"team": park, "stand": stand})
     		facHR = factors['HR']
     		fac1B = factors['1B']
     		fac2B = factors['2B']
