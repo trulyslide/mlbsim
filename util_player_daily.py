@@ -4,6 +4,8 @@ import mongo_connect
 db = mongo_connect.connect()
 from datetime import datetime
 
+db.pitcher_PA_daily.remove()
+db.batter_PA_daily.remove()
 events = {}
 def reset(events):
 	events['AB'] = 0
