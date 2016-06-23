@@ -57,7 +57,8 @@ for game in games:
 	{ '$set': {
 		"playerID": awayStarter,
 		"team": away_team,
-		"pos": "pit"
+		"pos": "pit",
+		"throws": "R"
 	}},
         upsert=True)
 	db.rosters.update(
@@ -68,7 +69,8 @@ for game in games:
 	{ '$set': {
 		"playerID": homeStarter,
 		"team": home_team,
-		"pos": "pit"
+		"pos": "pit",
+		"throws": "R"
 	}},
     	upsert=True)
 			
