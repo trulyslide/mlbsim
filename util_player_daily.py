@@ -4,6 +4,8 @@ import mongo_connect
 db = mongo_connect.connect()
 from datetime import datetime
 
+db.pitcher_PA_daily.remove()
+db.batter_PA_daily.remove()
 events = {}
 def reset(events):
 	events['AB'] = 0
@@ -131,8 +133,8 @@ for data in dataStatus:
 	print lastDateUpdated
 
 #get rows where date > lastDateUpdated
-batterPAs = db.batter_PA.find( { "date": {"$gt": '2016_06_17' }} ).sort([("date", 1),("playerID", 1)])
-pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": lastDateUpdated }} ).sort([("date", 1),("playerID", 1)])
+batterPAs = db.batter_PA.find( { "date": {"$gt": '2015_09_01' }} ).sort([("date", 1),("playerID", 1)])
+pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": '2015_09_01' }} ).sort([("date", 1),("playerID", 1)])
 
 print batterPAs.count()
 print pitcherPAs.count()
@@ -143,14 +145,14 @@ for pa in pitcherPAs:
 	paDate =  pa['date']
 	playerID = pa['playerID']
 	stand = pa['stand']
-		gameID = pa['gamelink_num']
+	gameID = pa['gamelink_num']
 	parts = gameID.split("_")
 	park = parts[-2][:3]
 	factors = db.factors.find_one({"team": park, "stand": stand})
-		facHR = factors['HR']
-		fac1B = factors['1B']
-		fac2B = factors['2B']
-		fac3B = factors['3B']
+	facHR = factors['HR']
+	fac1B = factors['1B']
+	fac2B = factors['2B']
+	fac3B = factors['3B']
 	events['date'] = paDate
 	if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
 		print paDate

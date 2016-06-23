@@ -257,14 +257,14 @@ def player_daily():
 			paDate =  pa['date']
 			playerID = pa['playerID']
 			stand = pa['stand']
-    		gameID = pa['gamelink_num']
+	    		gameID = pa['gamelink_num']
 			parts = gameID.split("_")
 			park = parts[-2][:3]
 			factors = db.factors.find_one({"team": park, "stand": stand})
-    		facHR = factors['HR']
-    		fac1B = factors['1B']
-    		fac2B = factors['2B']
-    		fac3B = factors['3B']
+	    		facHR = factors['HR']
+	    		fac1B = factors['1B']
+	    		fac2B = factors['2B']
+	    		fac3B = factors['3B']
 			if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
 				events['HRfac'] = events['HR'] / facHR
 				events['1Bfac'] = events['1B'] / fac1B
@@ -358,7 +358,7 @@ def player_daily():
 		events['3Bfac'] = events['3B'] / fac3B
 		events['Hfac'] = events['HRfac'] + events['1Bfac'] + events['2Bfac'] + events['3Bfac']
 		loadDateBatter(events,lastPlayerID)
-
+	
 		result = db.status.update(
 		{
 			"year" : 2016
