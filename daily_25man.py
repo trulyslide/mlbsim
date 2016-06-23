@@ -16,6 +16,8 @@ def current_rosters():
 
 	db = mongo_connect.connect()
 
+	db.rosters.remove()
+
 	batters = requests.get('http://gd2.mlb.com/components/game/mlb/year_2016/batters/').text
 	pitchers = requests.get('http://gd2.mlb.com/components/game/mlb/year_2016/pitchers/').text
 	items = db.teams.find()
