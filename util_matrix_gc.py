@@ -54,7 +54,7 @@ for game in games:
 		"playerID": awayStarter,
 		"team": away_team
 	},
-	{ $set: {
+	{ '$set': {
 		"playerID": awayStarter,
 		"team": away_team,
 		"pos": "pit"
@@ -65,7 +65,7 @@ for game in games:
 		"playerID": homeStarter,
 		"team": home_team
 	},
-	{ $set: {
+	{ '$set': {
 		"playerID": homeStarter,
 		"team": home_team,
 		"pos": "pit"
