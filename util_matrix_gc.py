@@ -54,22 +54,22 @@ for game in games:
 		"playerID": awayStarter,
 		"team": away_team
 	},
-	{
+	{ $set: {
 		"playerID": awayStarter,
 		"team": away_team,
 		"pos": "pit"
-	},
+	}},
         upsert=True)
 	db.rosters.update(
 	{
 		"playerID": homeStarter,
 		"team": home_team
 	},
-	{
+	{ $set: {
 		"playerID": homeStarter,
 		"team": home_team,
 		"pos": "pit"
-	},
+	}},
     	upsert=True)
 			
 	awayStarterLookup = db.pitcher_season.find_one({"playerID":awayStarter})
