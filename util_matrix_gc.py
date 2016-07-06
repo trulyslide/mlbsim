@@ -37,7 +37,11 @@ for game in games:
 						if child3.tag == 'player_id':
 							print child3.text
 							homeStarter = child3.text
-
+						if child3.tag == 'throwinghand':
+							if(child3.text == "RHP"):
+								throws = "R"
+							if(child3.text == "LHP"):
+								throws = "L"
 				if child2.tag == 'away':
 					for child3 in child2.getchildren():
 						if child3.tag == 'player_id':
@@ -54,24 +58,24 @@ for game in games:
 		"playerID": awayStarter,
 		"team": away_team
 	},
-	{ '$set': {
+	{{
 		"playerID": awayStarter,
 		"team": away_team,
 		"pos": "pit",
-		"throws": "R"
-	}},
+		"throws": throws
+	},
         upsert=True)
 	db.rosters.update(
 	{
 		"playerID": homeStarter,
 		"team": home_team
 	},
-	{ '$set': {
+	{
 		"playerID": homeStarter,
 		"team": home_team,
 		"pos": "pit",
-		"throws": "R"
-	}},
+		"throws": throws
+	},
     	upsert=True)
 			
 	awayStarterLookup = db.pitcher_season.find_one({"playerID":awayStarter})

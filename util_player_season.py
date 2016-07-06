@@ -4,8 +4,8 @@ import mongo_connect
 db = mongo_connect.connect()
 from datetime import datetime
 
-batterDaily = db.batter_PA_daily.find( { "date": {"$gt": 20160101 }} ).sort([("playerID", 1)])
-pitcherDaily = db.pitcher_PA_daily.find( { "date": {"$gt": 20160101 }} ).sort([("playerID", 1)])
+batterDaily = db.batter_PA_daily.find( { "date": {"$gt": 20160101 }} ).sort([("playerID", 1),("throws", 1)])
+pitcherDaily = db.pitcher_PA_daily.find( { "date": {"$gt": 20160101 }} ).sort([("playerID", 1),("stand", 1)])
 
 
 season = {}
@@ -61,10 +61,12 @@ def reset(season):
 def loadSeasonBatter(season,playerID):
 	db.batter_season.update(
 		{
-			'playerID': playerID
+			'playerID': playerID,
+			'throws' : season['throws']
 		},
 		{
 			'playerID': playerID,
+			'throws' : season['throws'],
 			'AB' : season['AB'],
 			'1B' : season['1B'],
 			'2B' : season['2B'],
@@ -142,10 +144,12 @@ def loadSeasonBatter(season,playerID):
 def loadSeasonPitcher(season,playerID):
 	db.pitcher_season.update(
 		{
-			'playerID': playerID
+			'playerID': playerID,
+			'stand' : season['stand']
 		},
 		{
 			'playerID': playerID,
+			'stand' : season['stand'],
 			'AB' : season['AB'],
 			'1B' : season['1B'],
 			'2B' : season['2B'],
@@ -220,15 +224,21 @@ def loadSeasonPitcher(season,playerID):
 		},
 		upsert=True)
 
+db.batter_season.remove({})
+db.pitcher_season.remove({})
 season = reset(season)
 lastPlayerID = ""
+lastThrows = ""
 for daily in batterDaily:
 	playerID = daily['playerID']
+	throws = daily['throws']
 	print playerID
-	if(lastPlayerID != "" and daily['playerID'] != lastPlayerID ):
+	if(lastPlayerID != "" and (playerID != lastPlayerID or throws != lastThrows)):
 		loadSeasonBatter(season,lastPlayerID)
 		season = reset(season)
 	lastPlayerID = playerID
+	lastThrows = throws
+	season['throws'] = throws
 	season['AB'] = season['AB'] + daily['AB']
 	season['1B'] = season['1B'] + daily['1B']
 	season['2B'] = season['2B'] + daily['2B']
@@ -307,13 +317,17 @@ loadSeasonBatter(season,lastPlayerID)
 
 season = reset(season)
 lastPlayerID = ""
+lastStand = ""
 for daily in pitcherDaily:
 	playerID = daily['playerID']
-	if(lastPlayerID != "" and daily['playerID'] != lastPlayerID ):
+	stand = daily['stand']
+	if(lastPlayerID != "" and (playerID != lastPlayerID or stand != lastStand )):
 		print daily['playerID']
 		loadSeasonPitcher(season,lastPlayerID)
 		season = reset(season)
 	lastPlayerID = playerID
+	lastStand = stand
+	season['stand'] = stand
 	season['AB'] = season['AB'] + daily['AB']
 	season['1B'] = season['1B'] + daily['1B']
 	season['2B'] = season['2B'] + daily['2B']
@@ -361,32 +375,36 @@ for daily in pitcherDaily:
 	season['BB_adj'] = season['BB_adj'] + daily['BB_adj']
 	season['Sac_adj'] = season['Sac_adj'] + daily['Sac_adj']
 	season['PA_adj'] = season['AB_adj'] + season['CInf_adj'] + season['FInf_adj'] + season['E_adj'] + season['HBP_adj'] + season['BB_adj'] + season['Sac_adj']
-	season['OBP_adj'] = float(season['H_adj'] + season['CInf_adj'] + season['FInf_adj'] + season['E_adj'] + season['HBP_adj'] + season['BB_adj'])/season['PA_adj']
+	if(season['PA_adj'] > 0):
+		season['OBP_adj'] = float(season['H_adj'] + season['CInf_adj'] + season['FInf_adj'] + season['E_adj'] + season['HBP_adj'] + season['BB_adj'])/season['PA_adj']
+	else:
+		season['OBP_adj'] = 0
 	if(season['AB_adj'] > 0):
 		season['SLG_adj'] = float(season['1B_adj'] + season['2B_adj']*2 + season['3B_adj']*3 + season['HR_adj']*4) / season['AB_adj']
 	else:
 		season['SLG_adj'] = 0
 	season['OPS_adj'] = season['OBP_adj'] + season['SLG_adj']
-	season['1B_avg'] = float(season['1B_adj']) / season['PA_adj']
-	season['2B_avg'] = float(season['2B_adj']) / season['PA_adj']
-	season['3B_avg'] = float(season['3B_adj']) / season['PA_adj']
-	season['HR_avg'] = float(season['HR_adj']) / season['PA_adj']
-	season['H_avg'] = float(season['H_adj']) / season['PA_adj']
-	season['BInf_avg'] = float(season['BInf_adj']) / season['PA_adj']
-	season['GndO_avg'] = float(season['GndO_adj']) / season['PA_adj']
-	season['Bunt_avg'] = float(season['Bunt_adj']) / season['PA_adj']
-	season['LinO_avg'] = float(season['LinO_adj']) / season['PA_adj']
-	season['PopO_avg'] = float(season['PopO_adj']) / season['PA_adj']
-	season['FlyO_avg'] = float(season['FlyO_adj']) / season['PA_adj']
-	season['DP_avg'] = float(season['DP_adj']) / season['PA_adj']
-	season['K_avg'] = float(season['K_adj']) / season['PA_adj']
-	season['TP_avg'] = float(season['TP_adj']) / season['PA_adj']
-	season['CInf_avg'] = float(season['CInf_adj']) / season['PA_adj']
-	season['FInf_avg'] = float(season['FInf_adj']) / season['PA_adj']
-	season['E_avg'] = float(season['E_adj']) / season['PA_adj']
-	season['HBP_avg'] = float(season['HBP_adj']) / season['PA_adj']
-	season['IBB_avg'] = float(season['IBB_adj']) / season['PA_adj']
-	season['BB_avg'] = float(season['BB_adj']) / season['PA_adj']
-	season['Sac_avg'] = float(season['Sac_adj']) / season['PA_adj']
+	if(season['PA_adj'] > 0):
+		season['1B_avg'] = float(season['1B_adj']) / season['PA_adj']
+		season['2B_avg'] = float(season['2B_adj']) / season['PA_adj']
+		season['3B_avg'] = float(season['3B_adj']) / season['PA_adj']
+		season['HR_avg'] = float(season['HR_adj']) / season['PA_adj']
+		season['H_avg'] = float(season['H_adj']) / season['PA_adj']
+		season['BInf_avg'] = float(season['BInf_adj']) / season['PA_adj']
+		season['GndO_avg'] = float(season['GndO_adj']) / season['PA_adj']
+		season['Bunt_avg'] = float(season['Bunt_adj']) / season['PA_adj']
+		season['LinO_avg'] = float(season['LinO_adj']) / season['PA_adj']
+		season['PopO_avg'] = float(season['PopO_adj']) / season['PA_adj']
+		season['FlyO_avg'] = float(season['FlyO_adj']) / season['PA_adj']
+		season['DP_avg'] = float(season['DP_adj']) / season['PA_adj']
+		season['K_avg'] = float(season['K_adj']) / season['PA_adj']
+		season['TP_avg'] = float(season['TP_adj']) / season['PA_adj']
+		season['CInf_avg'] = float(season['CInf_adj']) / season['PA_adj']
+		season['FInf_avg'] = float(season['FInf_adj']) / season['PA_adj']
+		season['E_avg'] = float(season['E_adj']) / season['PA_adj']
+		season['HBP_avg'] = float(season['HBP_adj']) / season['PA_adj']
+		season['IBB_avg'] = float(season['IBB_adj']) / season['PA_adj']
+		season['BB_avg'] = float(season['BB_adj']) / season['PA_adj']
+		season['Sac_avg'] = float(season['Sac_adj']) / season['PA_adj']
 loadSeasonPitcher(season,lastPlayerID)
 print batterDaily.count()

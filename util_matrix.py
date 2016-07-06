@@ -46,6 +46,8 @@ for game in games:
 		print player
 		#print player['name'] + " - " + player['pos']
 		playerID = str(player['playerID'])
+		bats = player['bats']
+		throws = player['throws']
 		#print playerID
 		if (player['pos'] == 'bat'):
 			stats = db.batter_season.find_one({ "playerID": playerID })

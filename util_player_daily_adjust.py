@@ -19,6 +19,7 @@ for gameDate in gameDates:
 	print pitcherDailys.count()
 	for batter in batterDailys:
 		playerID = batter['playerID']
+		throws = batter['throws']
 		adj_AB = batter['AB'] * adj
 		adj_1B = batter['1Bfac'] * adj
 		adj_2B = batter['2Bfac'] * adj
@@ -47,6 +48,7 @@ for gameDate in gameDates:
 		{
 			'playerID': playerID,
 			'date' : gdate,
+			'throws': throws
 		},
 		{ '$set': {
 			'AB_adj' : adj_AB,
@@ -76,6 +78,7 @@ for gameDate in gameDates:
 
 	for pitcher in pitcherDailys:
 		playerID = pitcher['playerID']
+		stand = pitcher['stand']
 		adj_AB = pitcher['AB'] * adj
 		adj_1B = pitcher['1Bfac'] * adj
 		adj_2B = pitcher['2Bfac'] * adj
@@ -104,6 +107,7 @@ for gameDate in gameDates:
 		{
 			'playerID': playerID,
 			'date' : gdate,
+			'stand' : stand
 		},
 		{ '$set': {
 			'AB_adj' : adj_AB,

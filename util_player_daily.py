@@ -46,10 +46,12 @@ def loadDateBatter(events,playerID):
 		{
 			'playerID': playerID,
 			'date' : dynamoDate,
+			'throws' : events['throws']
 		},
 		{
 			'playerID': playerID,
 			'date' : dynamoDate,
+			'throws' : events['throws'],
 			'AB' : events['AB'],
 			'1B' : events['1B'],
 			'2B' : events['2B'],
@@ -89,10 +91,12 @@ def loadDatePitcher(events,playerID):
 		{
 			'playerID': playerID,
 			'date' : dynamoDate,
+			'stand' : events['stand']
 		},
 		{
 			'playerID': playerID,
 			'date' : dynamoDate,
+			'stand' : events['stand'],
 			'AB' : events['AB'],
 			'1B' : events['1B'],
 			'2B' : events['2B'],
@@ -133,14 +137,15 @@ for data in dataStatus:
 	print lastDateUpdated
 
 #get rows where date > lastDateUpdated
-batterPAs = db.batter_PA.find( { "date": {"$gt": '2015_09_01' }} ).sort([("date", 1),("playerID", 1)])
-pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": '2015_09_01' }} ).sort([("date", 1),("playerID", 1)])
+batterPAs = db.batter_PA.find( { "date": {"$gt": '2015_09_01' }} ).sort([("date", 1),("playerID", 1),("throws", 1)])
+pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": '2015_09_01' }} ).sort([("date", 1),("playerID", 1),("stand", 1)])
 
 print batterPAs.count()
 print pitcherPAs.count()
 
 lastPADate = ""
 lastPlayerID = ""
+lastStand = ""
 for pa in pitcherPAs:
 	paDate =  pa['date']
 	playerID = pa['playerID']
@@ -154,7 +159,7 @@ for pa in pitcherPAs:
 	fac2B = factors['2B']
 	fac3B = factors['3B']
 	events['date'] = paDate
-	if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
+	if((paDate != lastPADate or playerID != lastPlayerID or stand != lastStand) and lastPlayerID != ""):
 		print paDate
 		print playerID
 		events['HRfac'] = events['HR'] / facHR
@@ -166,6 +171,8 @@ for pa in pitcherPAs:
 		events = reset(events)
 	lastPADate = paDate
 	lastPlayerID = playerID
+	lastStand = stand
+	events['stand'] = stand
 	event = pa['event']
 	if event == "Single":
 		events['AB'] += 1
@@ -249,11 +256,12 @@ loadDatePitcher(events,lastPlayerID)
 
 lastPADate = ""
 lastPlayerID = ""
+lastThrows = ""
 for pa in batterPAs:
 	paDate =  pa['date']
 	playerID = pa['playerID']
-	stand = pa['stand']
-    	gameID = pa['gamelink_num']
+	throws = pa['p_throws']
+	gameID = pa['gamelink_num']
 	parts = gameID.split("_")
 	park = parts[-2][:3]
 	factors = db.factors.find_one({"team": park, "stand": stand})
@@ -261,7 +269,7 @@ for pa in batterPAs:
     	fac1B = factors['1B']
     	fac2B = factors['2B']
     	fac3B = factors['3B']
-	if((paDate != lastPADate or playerID != lastPlayerID) and lastPlayerID != ""):
+	if((paDate != lastPADate or playerID != lastPlayerID or throws != lastThrows) and lastPlayerID != ""):
 		events['HRfac'] = events['HR'] / facHR
 		events['1Bfac'] = events['1B'] / fac1B
 		events['2Bfac'] = events['2B'] / fac2B
@@ -274,6 +282,8 @@ for pa in batterPAs:
 	events['date'] = paDate
 	lastPADate = paDate
 	lastPlayerID = playerID
+	lastThrows = throws
+	events['throws'] = throws
 	event = pa['event']
 	if event == "Single":
 		events['AB'] += 1
