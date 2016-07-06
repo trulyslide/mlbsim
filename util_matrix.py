@@ -50,29 +50,15 @@ for game in games:
 		throws = player['throws']
 		#print playerID
 		if (player['pos'] == 'bat'):
-			stats = db.batter_season.find_one({ "playerID": playerID })
-			if(stats != None):
-				stats['bats'] = player['bats']
-				homeBat.append(stats)
+			homeBat.append(player)
 		if (player['pos'] == 'pit'):
-			stats = db.pitcher_season.find_one({ "playerID": playerID })
-			if(stats != None):
-				stats['throws'] = player['throws']
-				homePit.append(stats)
+			homePit.append(player)
 	for player in awayRoster:
-		#print player['name'] + " - " + player['pos']
 		playerID = str(player['playerID'])
-		#print playerID
 		if (player['pos'] == 'bat'):
-			stats = db.batter_season.find_one({ "playerID": playerID })
-			if(stats != None):
-				stats['bats'] = player['bats']
-				awayBat.append(stats)
+			awayBat.append(player)
 		if (player['pos'] == 'pit'):
-			stats = db.pitcher_season.find_one({ "playerID": playerID })
-			if(stats != None):
-				stats['throws'] = player['throws']
-				awayPit.append(stats)
+			awayPit.append(player)
 
 	for homeBatter in homeBat:
 		homeBatterID = homeBatter['playerID']
