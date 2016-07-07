@@ -210,8 +210,8 @@ for game in games:
 
 				db.games.insert(
 				{
-				'batterID': int(homeBatterID),
-				'pitcherID' :int(awayPitcherID),
+				'batterID': homeBatterID,
+				'pitcherID' :awayPitcherID,
 				'1B_avg' : tot_1B_avg,
 				'2B_avg' : tot_2B_avg,
 				'3B_avg' : tot_3B_avg,
@@ -393,8 +393,8 @@ for game in games:
 
 				db.games.insert(
 				{
-				'batterID': int(homeBatterID),
-				'pitcherID' :int(awayPitcherID),
+				'batterID': homeBatterID,
+				'pitcherID' :awayPitcherID,
 				'1B_avg' : tot_1B_avg,
 				'2B_avg' : tot_2B_avg,
 				'3B_avg' : tot_3B_avg,
