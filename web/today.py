@@ -36,8 +36,8 @@ for game in games:
 	if (awayStarterQ):	
 		awayStarterName = awayStarterQ['name']
 
-	homeBatters = db.games.find({"pitcherID": str(awayStarter)})
-	awayBatters = db.games.find({"pitcherID": str(homeStarter)})
+	homeBatters = db.games.find({"pitcherID": awayStarter})
+	awayBatters = db.games.find({"pitcherID": homeStarter})
 
 	for batter in homeBatters:
 		batterID = batter['batterID']
