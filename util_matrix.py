@@ -208,14 +208,10 @@ for game in games:
 					tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
 					tot_OPS_adj = tot_OBP_adj + tot_SLG_adj
 
-				db.games.update(
+				db.games.insert(
 				{
-				'batterID': homeBatterID,
-				'pitcherID' :awayPitcherID
-				},
-				{
-				'batterID': homeBatterID,
-				'pitcherID' :awayPitcherID,
+				'batterID': int(homeBatterID),
+				'pitcherID' :int(awayPitcherID),
 				'1B_avg' : tot_1B_avg,
 				'2B_avg' : tot_2B_avg,
 				'3B_avg' : tot_3B_avg,
@@ -240,8 +236,7 @@ for game in games:
 				'OBP_adj' : tot_OBP_adj,
 				'SLG_adj' : tot_SLG_adj,
 				'OPS_adj' : tot_OPS_adj
-				},
-				upsert=True)
+				})
 
 	for awayBatter in awayBat:
 		awayBatterID = awayBatter['playerID']
@@ -396,14 +391,10 @@ for game in games:
 					tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
 					tot_OPS_adj = tot_OBP_adj + tot_SLG_adj
 
-				db.games.update(
+				db.games.insert(
 				{
-				'batterID': homeBatterID,
-				'pitcherID' :awayPitcherID
-				},
-				{
-				'batterID': homeBatterID,
-				'pitcherID' :awayPitcherID,
+				'batterID': int(homeBatterID),
+				'pitcherID' :int(awayPitcherID),
 				'1B_avg' : tot_1B_avg,
 				'2B_avg' : tot_2B_avg,
 				'3B_avg' : tot_3B_avg,
@@ -428,5 +419,4 @@ for game in games:
 				'OBP_adj' : tot_OBP_adj,
 				'SLG_adj' : tot_SLG_adj,
 				'OPS_adj' : tot_OPS_adj
-				},
-				upsert=True)
+				})
