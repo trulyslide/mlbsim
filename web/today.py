@@ -22,7 +22,7 @@ print "Content-Type: text/html\n\n"
 print "<table>"
 
 games = db.games_prog.find({"date": int(dateStr)})
-print games.count()
+
 for game in games:
 	homeStarter = game['homeStarter']
 	awayStarter = game['awayStarter']
@@ -38,6 +38,8 @@ for game in games:
 
 	homeBatters = db.games.find({"pitcherID": awayStarter})
 	awayBatters = db.games.find({"pitcherID": homeStarter})
+	print homeBatters.count()
+	print awayBatters.count()
 
 	for batter in homeBatters:
 		batterID = batter['batterID']
