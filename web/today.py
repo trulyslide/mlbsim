@@ -36,8 +36,8 @@ for game in games:
 	if (awayStarterQ):	
 		awayStarterName = awayStarterQ['name']
 
-	homeBatters = db.games.find({"pitcherID": awayStarter})
-	awayBatters = db.games.find({"pitcherID": homeStarter})
+	homeBatters = db.games.find({"pitcherID": int(awayStarter)})
+	awayBatters = db.games.find({"pitcherID": int(homeStarter)})
 	print homeBatters.count()
 	print awayBatters.count()
 
