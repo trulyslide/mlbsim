@@ -54,7 +54,6 @@ for game in games:
 			awayPit.append(player)
 
 	for homeBatter in homeBat:
-		print homeBatter
 		homeBatterID =homeBatter['playerID']
 		homeBatterStand = homeBatter['bats']
 
@@ -69,6 +68,8 @@ for game in games:
 					homeBatterStand = "L"
 			batterStats = db.batter_season.find_one({"playerID": homeBatterID, "throws": awayPitcherThrows})
 			pitcherStats = db.pitcher_season.find_one({"playerID": awayPitcherID, "stand": homeBatterStand})
+			print batterStats
+			print pitcherStats
 			if (batterStats and pitcherStats):
 				bat_1B_avg =  batterStats['1B_avg']
 				bat_2B_avg = batterStats['2B_avg']
