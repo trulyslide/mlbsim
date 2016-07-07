@@ -24,6 +24,7 @@ print "<table>"
 games = db.games_prog.find({"date": int(dateStr)})
 
 for game in games:
+	print game
 	homeStarter = game['homeStarter']
 	awayStarter = game['awayStarter']
 
@@ -36,8 +37,8 @@ for game in games:
 	if (awayStarterQ):	
 		awayStarterName = awayStarterQ['name']
 
-	homeBatters = db.games.find({"pitcherID": str(awayStarter)})
-	awayBatters = db.games.find({"pitcherID": str(homeStarter)})
+	homeBatters = db.games.find({"pitcherID": awayStarter})
+	awayBatters = db.games.find({"pitcherID": homeStarter})
 	print homeBatters.count()
 	print awayBatters.count()
 
@@ -45,7 +46,7 @@ for game in games:
 		batterID = batter['batterID']
 		#print str(batterID) + " - " + str(awayStarter) + "<br>"
 		batterOPS = batter['OPS_adj']
-		nameQuery = db.rosters.find_one({"playerID":int(batterID)})
+		nameQuery = db.rosters.find_one({"playerID":batterID})
 		if(nameQuery):
 			name = nameQuery['name']
 		else:
@@ -55,7 +56,7 @@ for game in games:
 	for batter in awayBatters:
 		batterID = batter['batterID']
 		batterOPS = batter['OPS_adj']
-		nameQuery = db.rosters.find_one({"playerID":int(batterID)})
+		nameQuery = db.rosters.find_one({"playerID":batterID})
 		if(nameQuery):
 			name = nameQuery['name']
 		else:
