@@ -58,7 +58,7 @@ for game in games:
 		"playerID": awayStarter,
 		"team": away_team
 	},
-	{{
+	{
 		"playerID": awayStarter,
 		"team": away_team,
 		"pos": "pit",
