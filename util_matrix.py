@@ -68,7 +68,6 @@ for game in games:
 			pitcherStats = db.pitcher_season.find_one({"playerID": awayPitcherID, "stand": homeBatterStand})
 
 			if (batterStats is not None and pitcherStats is not None):
-				print "success"
 				bat_1B_avg =  batterStats['1B_avg']
 				bat_2B_avg = batterStats['2B_avg']
 				bat_3B_avg = batterStats['3B_avg']
@@ -252,7 +251,6 @@ for game in games:
 			batterStats = db.batter_season.find_one({"playerID": awayBatterID, "throws": homePitcherThrows})
 			pitcherStats = db.pitcher_season.find_one({"playerID": homePitcherID, "stand": awayBatterStand})
 			if (batterStats is not None and pitcherStats is not None):
-				print "success"
 				bat_1B_avg =  batterStats['1B_avg']
 				bat_2B_avg = batterStats['2B_avg']
 				bat_3B_avg = batterStats['3B_avg']
