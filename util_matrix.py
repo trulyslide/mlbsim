@@ -67,7 +67,7 @@ for game in games:
 			batterStats = db.batter_season.find_one({"playerID": homeBatterID, "throws": awayPitcherThrows})
 			pitcherStats = db.pitcher_season.find_one({"playerID": awayPitcherID, "stand": homeBatterStand})
 
-			if (batterStats is not None and pitcherStats is not None):
+			if (batterStats is not None):
 				bat_1B_avg =  batterStats['1B_avg']
 				bat_2B_avg = batterStats['2B_avg']
 				bat_3B_avg = batterStats['3B_avg']
@@ -92,12 +92,18 @@ for game in games:
 				bat_OBP_adj = batterStats['OBP_adj']
 				bat_SLG_adj = batterStats['SLG_adj']
 				bat_OPS_adj = batterStats['OPS_adj']
-
-				pit_1B_avg =  pitcherStats['1B_avg']
-				pit_2B_avg = pitcherStats['2B_avg']
-				pit_3B_avg = pitcherStats['3B_avg']
-				pit_HR_avg = pitcherStats['HR_avg']
-				pit_H_avg = pitcherStats['H_avg']
+				if(pitcherStats is not None):
+					pit_1B_avg =  pitcherStats['1B_avg']
+					pit_2B_avg = pitcherStats['2B_avg']
+					pit_3B_avg = pitcherStats['3B_avg']
+					pit_HR_avg = pitcherStats['HR_avg']
+					pit_H_avg = pitcherStats['H_avg']
+				else:
+					pit_1B_avg =  batterStats['1B_avg']
+					pit_2B_avg = batterStats['2B_avg']
+					pit_3B_avg = batterStats['3B_avg']
+					pit_HR_avg = batterStats['HR_avg']
+					pit_H_avg = batterStats['H_avg']
 				if(homeBatterStand == 'L'):
 					bat_1B_avg = bat_1B_avg * fac1B_L
 					bat_2B_avg = bat_2B_avg * fac2B_L
@@ -134,26 +140,47 @@ for game in games:
 					pit_2B_avg = pit_2B_avg * fac2B_L
 					pit_3B_avg = pit_3B_avg * fac3B_L
 					pit_HR_avg = pit_HR_avg * facHR_L
-				pit_BInf_avg = pitcherStats['BInf_avg']
-				pit_GndO_avg = pitcherStats['GndO_avg']
-				pit_Bunt_avg = pitcherStats['Bunt_avg']
-				pit_LinO_avg = pitcherStats['LinO_avg']
-				pit_PopO_avg = pitcherStats['PopO_avg']
-				pit_FlyO_avg = pitcherStats['FlyO_avg']
-				pit_DP_avg = pitcherStats['DP_avg']
-				pit_K_avg = pitcherStats['K_avg']
-				pit_TP_avg = pitcherStats['TP_avg']
-				pit_CInf_avg = pitcherStats['CInf_avg']
-				pit_FInf_avg = pitcherStats['FInf_avg']
-				pit_E_avg = pitcherStats['E_avg']
-				pit_HBP_avg = pitcherStats['HBP_avg']
-				pit_IBB_avg = pitcherStats['IBB_avg']
-				pit_BB_avg = pitcherStats['BB_avg']
-				pit_Sac_avg = pitcherStats['Sac_avg']
-				pit_OBP_adj = pitcherStats['OBP_adj']
-				pit_SLG_adj = pitcherStats['SLG_adj']
-				pit_OPS_adj = pitcherStats['OPS_adj']
-				if(pitcherStats['AB'] != 0):
+				if(pitcherStats is not None):
+					pit_BInf_avg = pitcherStats['BInf_avg']
+					pit_GndO_avg = pitcherStats['GndO_avg']
+					pit_Bunt_avg = pitcherStats['Bunt_avg']
+					pit_LinO_avg = pitcherStats['LinO_avg']
+					pit_PopO_avg = pitcherStats['PopO_avg']
+					pit_FlyO_avg = pitcherStats['FlyO_avg']
+					pit_DP_avg = pitcherStats['DP_avg']
+					pit_K_avg = pitcherStats['K_avg']
+					pit_TP_avg = pitcherStats['TP_avg']
+					pit_CInf_avg = pitcherStats['CInf_avg']
+					pit_FInf_avg = pitcherStats['FInf_avg']
+					pit_E_avg = pitcherStats['E_avg']
+					pit_HBP_avg = pitcherStats['HBP_avg']
+					pit_IBB_avg = pitcherStats['IBB_avg']
+					pit_BB_avg = pitcherStats['BB_avg']
+					pit_Sac_avg = pitcherStats['Sac_avg']
+					pit_OBP_adj = pitcherStats['OBP_adj']
+					pit_SLG_adj = pitcherStats['SLG_adj']
+					pit_OPS_adj = pitcherStats['OPS_adj']
+				else:
+					pit_BInf_avg = batterStats['BInf_avg']
+					pit_GndO_avg = batterStats['GndO_avg']
+					pit_Bunt_avg = batterStats['Bunt_avg']
+					pit_LinO_avg = batterStats['LinO_avg']
+					pit_PopO_avg = batterStats['PopO_avg']
+					pit_FlyO_avg = batterStats['FlyO_avg']
+					pit_DP_avg = batterStats['DP_avg']
+					pit_K_avg = batterStats['K_avg']
+					pit_TP_avg = batterStats['TP_avg']
+					pit_CInf_avg = batterStats['CInf_avg']
+					pit_FInf_avg = batterStats['FInf_avg']
+					pit_E_avg = batterStats['E_avg']
+					pit_HBP_avg = batterStats['HBP_avg']
+					pit_IBB_avg = batterStats['IBB_avg']
+					pit_BB_avg = batterStats['BB_avg']
+					pit_Sac_avg = batterStats['Sac_avg']
+					pit_OBP_adj = batterStats['OBP_adj']
+					pit_SLG_adj = batterStats['SLG_adj']
+					pit_OPS_adj = batterStats['OPS_adj']
+				if(pitcherStats is not None):
 					tot_1B_avg =  (pitcherStats['1B_avg'] + batterStats['1B_avg'])/2
 					tot_2B_avg = (pitcherStats['2B_avg'] + batterStats['2B_avg'])/2
 					tot_3B_avg = (pitcherStats['3B_avg'] + batterStats['3B_avg'])/2
@@ -250,7 +277,7 @@ for game in games:
 					awayBatterStand = "L"
 			batterStats = db.batter_season.find_one({"playerID": awayBatterID, "throws": homePitcherThrows})
 			pitcherStats = db.pitcher_season.find_one({"playerID": homePitcherID, "stand": awayBatterStand})
-			if (batterStats is not None and pitcherStats is not None):
+			if (batterStats is not None):
 				bat_1B_avg =  batterStats['1B_avg']
 				bat_2B_avg = batterStats['2B_avg']
 				bat_3B_avg = batterStats['3B_avg']
@@ -276,11 +303,18 @@ for game in games:
 				bat_SLG_adj = batterStats['SLG_adj']
 				bat_OPS_adj = batterStats['OPS_adj']
 
-				pit_1B_avg =  pitcherStats['1B_avg']
-				pit_2B_avg = pitcherStats['2B_avg']
-				pit_3B_avg = pitcherStats['3B_avg']
-				pit_HR_avg = pitcherStats['HR_avg']
-				pit_H_avg = pitcherStats['H_avg']
+				if(pitcherStats is not None):
+					pit_1B_avg =  pitcherStats['1B_avg']
+					pit_2B_avg = pitcherStats['2B_avg']
+					pit_3B_avg = pitcherStats['3B_avg']
+					pit_HR_avg = pitcherStats['HR_avg']
+					pit_H_avg = pitcherStats['H_avg']
+				else:
+					pit_1B_avg =  batterStats['1B_avg']
+					pit_2B_avg = batterStats['2B_avg']
+					pit_3B_avg = batterStats['3B_avg']
+					pit_HR_avg = batterStats['HR_avg']
+					pit_H_avg = batterStats['H_avg']
 				if(homeBatterStand == 'L'):
 					bat_1B_avg = bat_1B_avg * fac1B_L
 					bat_2B_avg = bat_2B_avg * fac2B_L
@@ -317,26 +351,47 @@ for game in games:
 					pit_2B_avg = pit_2B_avg * fac2B_L
 					pit_3B_avg = pit_3B_avg * fac3B_L
 					pit_HR_avg = pit_HR_avg * facHR_L
-				pit_BInf_avg = pitcherStats['BInf_avg']
-				pit_GndO_avg = pitcherStats['GndO_avg']
-				pit_Bunt_avg = pitcherStats['Bunt_avg']
-				pit_LinO_avg = pitcherStats['LinO_avg']
-				pit_PopO_avg = pitcherStats['PopO_avg']
-				pit_FlyO_avg = pitcherStats['FlyO_avg']
-				pit_DP_avg = pitcherStats['DP_avg']
-				pit_K_avg = pitcherStats['K_avg']
-				pit_TP_avg = pitcherStats['TP_avg']
-				pit_CInf_avg = pitcherStats['CInf_avg']
-				pit_FInf_avg = pitcherStats['FInf_avg']
-				pit_E_avg = pitcherStats['E_avg']
-				pit_HBP_avg = pitcherStats['HBP_avg']
-				pit_IBB_avg = pitcherStats['IBB_avg']
-				pit_BB_avg = pitcherStats['BB_avg']
-				pit_Sac_avg = pitcherStats['Sac_avg']
-				pit_OBP_adj = pitcherStats['OBP_adj']
-				pit_SLG_adj = pitcherStats['SLG_adj']
-				pit_OPS_adj = pitcherStats['OPS_adj']
-				if(pitcherStats['AB'] != 0):
+				if(pitcherStats is not None):
+					pit_BInf_avg = pitcherStats['BInf_avg']
+					pit_GndO_avg = pitcherStats['GndO_avg']
+					pit_Bunt_avg = pitcherStats['Bunt_avg']
+					pit_LinO_avg = pitcherStats['LinO_avg']
+					pit_PopO_avg = pitcherStats['PopO_avg']
+					pit_FlyO_avg = pitcherStats['FlyO_avg']
+					pit_DP_avg = pitcherStats['DP_avg']
+					pit_K_avg = pitcherStats['K_avg']
+					pit_TP_avg = pitcherStats['TP_avg']
+					pit_CInf_avg = pitcherStats['CInf_avg']
+					pit_FInf_avg = pitcherStats['FInf_avg']
+					pit_E_avg = pitcherStats['E_avg']
+					pit_HBP_avg = pitcherStats['HBP_avg']
+					pit_IBB_avg = pitcherStats['IBB_avg']
+					pit_BB_avg = pitcherStats['BB_avg']
+					pit_Sac_avg = pitcherStats['Sac_avg']
+					pit_OBP_adj = pitcherStats['OBP_adj']
+					pit_SLG_adj = pitcherStats['SLG_adj']
+					pit_OPS_adj = pitcherStats['OPS_adj']
+				else:
+					pit_BInf_avg = batterStats['BInf_avg']
+					pit_GndO_avg = batterStats['GndO_avg']
+					pit_Bunt_avg = batterStats['Bunt_avg']
+					pit_LinO_avg = batterStats['LinO_avg']
+					pit_PopO_avg = batterStats['PopO_avg']
+					pit_FlyO_avg = batterStats['FlyO_avg']
+					pit_DP_avg = batterStats['DP_avg']
+					pit_K_avg = batterStats['K_avg']
+					pit_TP_avg = batterStats['TP_avg']
+					pit_CInf_avg = batterStats['CInf_avg']
+					pit_FInf_avg = batterStats['FInf_avg']
+					pit_E_avg = batterStats['E_avg']
+					pit_HBP_avg = batterStats['HBP_avg']
+					pit_IBB_avg = batterStats['IBB_avg']
+					pit_BB_avg = batterStats['BB_avg']
+					pit_Sac_avg = batterStats['Sac_avg']
+					pit_OBP_adj = batterStats['OBP_adj']
+					pit_SLG_adj = batterStats['SLG_adj']
+					pit_OPS_adj = batterStats['OPS_adj']
+				if(pitcherStats is not None):
 					tot_1B_avg =  (pitcherStats['1B_avg'] + batterStats['1B_avg'])/2
 					tot_2B_avg = (pitcherStats['2B_avg'] + batterStats['2B_avg'])/2
 					tot_3B_avg = (pitcherStats['3B_avg'] + batterStats['3B_avg'])/2
@@ -391,8 +446,8 @@ for game in games:
 
 				db.games.insert(
 				{
-				'batterID': homeBatterID,
-				'pitcherID' :awayPitcherID,
+				'batterID': awayBatterID,
+				'pitcherID' :homePitcherID,
 				'1B_avg' : tot_1B_avg,
 				'2B_avg' : tot_2B_avg,
 				'3B_avg' : tot_3B_avg,

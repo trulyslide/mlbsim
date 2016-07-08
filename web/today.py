@@ -22,24 +22,20 @@ print "Content-Type: text/html\n\n"
 print "<table>"
 
 games = db.games_prog.find({"date": int(dateStr)})
-print games.count()
 for game in games:
 	homeStarter = game['homeStarter']
 	awayStarter = game['awayStarter']
-
 	homeStarterQ = db.rosters.find_one({"playerID":homeStarter})
 	awayStarterQ = db.rosters.find_one({"playerID":awayStarter})
 	homeStarterName = str(homeStarter)
 	awayStarterName = str(awayStarter)
-	if (homeStarterQ):
+	if (homeStarterQ is not None):
 		homeStarterName = homeStarterQ['name']
-	if (awayStarterQ):	
+	if (awayStarterQ is not None):	
 		awayStarterName = awayStarterQ['name']
 
-	homeBatters = db.games.find({"pitcherID": int(awayStarter)})
-	awayBatters = db.games.find({"pitcherID": int(homeStarter)})
-	print homeBatters.count()
-	print awayBatters.count()
+	homeBatters = db.games.find({"pitcherID": awayStarter})
+	awayBatters = db.games.find({"pitcherID": homeStarter})
 
 	for batter in homeBatters:
 		batterID = batter['batterID']
