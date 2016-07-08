@@ -22,7 +22,7 @@ print "Content-Type: text/html\n\n"
 print "<table>"
 
 games = db.games_prog.find({"date": int(dateStr)})
-
+print games.count()
 for game in games:
 	print game
 	homeStarter = game['homeStarter']
