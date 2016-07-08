@@ -40,8 +40,7 @@ for game in games:
 	print home_team + " - " + away_team
 	homeRoster = db.rosters.find( { "team": home_team })
 	awayRoster = db.rosters.find( { "team": away_team })
-	print homeRoster.count()
-	print awayRoster.count()
+
 	for player in homeRoster:
 		if (player['pos'] == 'bat'):
 			homeBat.append(player)
@@ -59,7 +58,6 @@ for game in games:
 
 		for awayPitcher in awayPit:
 			awayPitcherID = awayPitcher['playerID']
-			print awayPitcherID
 			awayPitcherThrows = awayPitcher['throws']
 			if(homeBatterStand == "S"):
 				if(awayPitcherThrows == "L"):
@@ -70,6 +68,7 @@ for game in games:
 			pitcherStats = db.pitcher_season.find_one({"playerID": awayPitcherID, "stand": homeBatterStand})
 
 			if (batterStats is not None and pitcherStats is not None):
+				print "success"
 				bat_1B_avg =  batterStats['1B_avg']
 				bat_2B_avg = batterStats['2B_avg']
 				bat_3B_avg = batterStats['3B_avg']
@@ -253,6 +252,7 @@ for game in games:
 			batterStats = db.batter_season.find_one({"playerID": awayBatterID, "throws": homePitcherThrows})
 			pitcherStats = db.pitcher_season.find_one({"playerID": homePitcherID, "stand": awayBatterStand})
 			if (batterStats is not None and pitcherStats is not None):
+				print "success"
 				bat_1B_avg =  batterStats['1B_avg']
 				bat_2B_avg = batterStats['2B_avg']
 				bat_3B_avg = batterStats['3B_avg']
