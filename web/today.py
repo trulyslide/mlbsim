@@ -25,8 +25,8 @@ games = db.games_prog.find({"date": int(dateStr)})
 for game in games:
 	homeStarter = game['homeStarter']
 	awayStarter = game['awayStarter']
-	homeStarterQ = db.rosters.find_one({"playerID":homeStarter})
-	awayStarterQ = db.rosters.find_one({"playerID":awayStarter})
+	homeStarterQ = db.rosters.find_one({"playerID":homeStarter,"name": {'$exists':True}})
+	awayStarterQ = db.rosters.find_one({"playerID":awayStarter, "name": {'$exists':True}})
 	homeStarterName = str(homeStarter)
 	awayStarterName = str(awayStarter)
 	if (homeStarterQ is not None):

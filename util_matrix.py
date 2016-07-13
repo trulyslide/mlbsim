@@ -230,7 +230,10 @@ for game in games:
 					tot_Sac_avg = batterStats['Sac_avg']
 					tot_AB_avg = 1 - tot_CInf_avg - tot_FInf_avg - tot_E_avg - tot_HBP_avg - tot_BB_avg
 					tot_OBP_adj = tot_H_avg + tot_CInf_avg + tot_FInf_avg + tot_E_avg + tot_HBP_avg + tot_HBP_avg
-					tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
+					if(tot_AB_avg != 0):
+						tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
+					else:
+						tot_SLG_adj = 0
 					tot_OPS_adj = tot_OBP_adj + tot_SLG_adj
 
 				db.games.insert(
@@ -441,7 +444,10 @@ for game in games:
 					tot_Sac_avg = batterStats['Sac_avg']
 					tot_AB_avg = 1 - tot_CInf_avg - tot_FInf_avg - tot_E_avg - tot_HBP_avg - tot_BB_avg
 					tot_OBP_adj = tot_H_avg + tot_CInf_avg + tot_FInf_avg + tot_E_avg + tot_HBP_avg + tot_HBP_avg
-					tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
+					if(tot_AB_avg != 0):
+						tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
+					else:
+						tot_SLG_adj = 0
 					tot_OPS_adj = tot_OBP_adj + tot_SLG_adj
 
 				db.games.insert(
