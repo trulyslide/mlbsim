@@ -139,10 +139,8 @@ for data in dataStatus:
 #get rows where date > lastDateUpdated
 batterPAs = db.batter_PA.find( { "date": {"$gt": '2015_09_15' }} ).sort([("date", 1),("playerID", 1),("throws", 1)])
 pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": '2015_09_15' }} ).sort([("date", 1),("playerID", 1),("stand", 1)])
-
 print batterPAs.count()
 print pitcherPAs.count()
-
 lastPADate = ""
 lastPlayerID = ""
 lastStand = ""
