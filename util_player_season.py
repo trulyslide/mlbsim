@@ -111,6 +111,7 @@ def loadSeasonBatter(season,playerID):
 			'Sac_adj' : season['Sac_adj'],
 			'PA_adj' : season['PA_adj'],
 			'OBP_adj' : season['OBP_adj'],
+			'wOBA_adj' : season['wOBA_adj'],
 			'SLG_adj' : season['SLG_adj'],
 			'OPS_adj' : season['OPS_adj'],
 			'1B_avg' : season['1B_avg'],
@@ -189,6 +190,7 @@ def loadSeasonPitcher(season,playerID):
 			'Sac_adj' : season['Sac_adj'],
 			'PA_adj' : season['PA_adj'],
 			'OBP_adj' : season['OBP_adj'],
+			'wOBA_adj' : season['wOBA_adj'],
 			'SLG_adj' : season['SLG_adj'],
 			'OPS_adj' : season['OPS_adj'],
 			'1B_avg' : season['1B_avg'],
@@ -279,6 +281,7 @@ for daily in batterDaily:
 	season['PA_adj'] = season['AB_adj'] + season['CInf_adj'] + season['FInf_adj'] + season['E_adj'] + season['HBP_adj'] + season['BB_adj'] + season['Sac_adj']
 	if(season['PA_adj'] > 0):
 		season['OBP_adj'] = float(season['H_adj'] + season['CInf_adj'] + season['FInf_adj'] + season['E_adj'] + season['HBP_adj'] + season['BB_adj'])/season['PA_adj']
+		season['wOBA_adj'] = float(season['BB_adj']*0.691 + season['HBP_adj']*0.722 + season['1B_adj']*0.879 + season['2B_adj']*1.241 + season['3B_adj']*1.567 + season['HR_adj']*2.01)/season['PA_adj']
 	else:
 		season['OBP_adj'] = 0
 	if(season['AB_adj'] > 0):
@@ -373,6 +376,8 @@ for daily in pitcherDaily:
 	season['PA_adj'] = season['AB_adj'] + season['CInf_adj'] + season['FInf_adj'] + season['E_adj'] + season['HBP_adj'] + season['BB_adj'] + season['Sac_adj']
 	if(season['PA_adj'] > 0):
 		season['OBP_adj'] = float(season['H_adj'] + season['CInf_adj'] + season['FInf_adj'] + season['E_adj'] + season['HBP_adj'] + season['BB_adj'])/season['PA_adj']
+		season['wOBA_adj'] = float(season['BB_adj']*0.691 + season['HBP_adj']*0.722 + season['1B_adj']*0.879 + season['2B_adj']*1.241 + season['3B_adj']*1.567 + season['HR_adj']*2.01)/season['PA_adj']
+	
 	else:
 		season['OBP_adj'] = 0
 	if(season['AB_adj'] > 0):
