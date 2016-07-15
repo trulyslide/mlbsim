@@ -15,7 +15,7 @@ awayPit = []
 
 today = date.today()
 dateStr =  today.strftime("%Y%m%d")
-#dateStr = "20160613"
+#dateStr = "20160710"
 
 year = dateStr[:4]
 month = dateStr[4:6]

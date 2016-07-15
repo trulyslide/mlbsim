@@ -14,6 +14,7 @@ import mongo_connect
 
 today = date.today()
 dateStr =  today.strftime("%Y%m%d")
+#dateStr = "20160710"
 
 db = mongo_connect.connect()
 
@@ -40,7 +41,7 @@ for game in games:
 	for batter in homeBatters:
 		batterID = batter['batterID']
 		#print str(batterID) + " - " + str(awayStarter) + "<br>"
-		batterOPS = batter['OPS_adj']
+		batterOPS = batter['wOBA_adj']
 		nameQuery = db.rosters.find_one({"playerID":batterID})
 		if(nameQuery):
 			name = nameQuery['name']
@@ -50,13 +51,13 @@ for game in games:
 
 	for batter in awayBatters:
 		batterID = batter['batterID']
-		batterOPS = batter['OPS_adj']
+		batterwOBA = batter['wOBA_adj']
 		nameQuery = db.rosters.find_one({"playerID":batterID})
 		if(nameQuery):
 			name = nameQuery['name']
 		else:
 			name = ""
-		print "<tr><td>" + str(homeStarter) + "</td><td>"  + homeStarterName + "</td><td>"  + str(batterID) + "</td><td>" + name +  "</td><td>" + str(batterOPS) + "</td></tr>"	
+		print "<tr><td>" + str(homeStarter) + "</td><td>"  + homeStarterName + "</td><td>"  + str(batterID) + "</td><td>" + name +  "</td><td>" + str(batterwOBA) + "</td></tr>"	
 
 
 print "</table>"
