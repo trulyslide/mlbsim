@@ -205,7 +205,7 @@ for game in games:
 					tot_Sac_avg = (pitcherStats['Sac_avg'] + batterStats['Sac_avg'])/2
 					tot_AB_avg = 1 - tot_CInf_avg - tot_FInf_avg - tot_E_avg - tot_HBP_avg - tot_BB_avg
 					tot_OBP_adj = tot_H_avg + tot_CInf_avg + tot_FInf_avg + tot_E_avg + tot_HBP_avg + tot_HBP_avg
-					tot_wOBA_adj = (tot_1B_avg*0.879 + tot_2B_avg*1.241 + tot_3B_avg*1.567 + tot_HR_avg*2.01 + tot_BB_avg*0.691 + tot_HBP_avg*0.722)/(1 - tot_Sac_avg - tot_HBP_avg - tot_IBB_avg)
+					tot_wOBA_adj = (tot_1B_avg*0.879 + tot_2B_avg*1.241 + tot_3B_avg*1.567 + tot_HR_avg*2.01 + tot_BB_avg*0.691 + tot_HBP_avg*0.722)/(1 - tot_Sac_avg - tot_HBP_avg - tot_IBB_avg + 0.0001)
 					tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
 					tot_OPS_adj = tot_OBP_adj + tot_SLG_adj
 				else:
@@ -234,7 +234,7 @@ for game in games:
 					tot_OBP_adj = tot_H_avg + tot_CInf_avg + tot_FInf_avg + tot_E_avg + tot_HBP_avg + tot_HBP_avg
 					if(tot_AB_avg != 0):
 						tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
-						tot_wOBA_adj = (tot_1B_avg*0.879 + tot_2B_avg*1.241 + tot_3B_avg*1.567 + tot_HR_avg*2.01 + tot_BB_avg*0.691 + tot_HBP_avg*0.722)/(1 - tot_Sac_avg - tot_HBP_avg - tot_IBB_avg)
+						tot_wOBA_adj = (tot_1B_avg*0.879 + tot_2B_avg*1.241 + tot_3B_avg*1.567 + tot_HR_avg*2.01 + tot_BB_avg*0.691 + tot_HBP_avg*0.722)/(1 - tot_Sac_avg - tot_HBP_avg - tot_IBB_avg + 0.0001)
 					else:
 						tot_SLG_adj = 0
 						tot_wOBA = 0
@@ -422,7 +422,7 @@ for game in games:
 					tot_BB_avg = (pitcherStats['BB_avg'] + batterStats['BB_avg'])/2
 					tot_Sac_avg = (pitcherStats['Sac_avg'] + batterStats['Sac_avg'])/2
 					tot_AB_avg = 1 - tot_CInf_avg - tot_FInf_avg - tot_E_avg - tot_HBP_avg - tot_BB_avg
-					tot_wOBA_adj = (tot_1B_avg*0.879 + tot_2B_avg*1.241 + tot_3B_avg*1.567 + tot_HR_avg*2.01 + tot_BB_avg*0.691 + tot_HBP_avg*0.722)/(1 - tot_Sac_avg - tot_HBP_avg - tot_IBB_avg)
+					tot_wOBA_adj = (tot_1B_avg*0.879 + tot_2B_avg*1.241 + tot_3B_avg*1.567 + tot_HR_avg*2.01 + tot_BB_avg*0.691 + tot_HBP_avg*0.722)/(1 - tot_Sac_avg - tot_HBP_avg - tot_IBB_avg + 0.0001)
 					tot_OBP_adj = tot_H_avg + tot_CInf_avg + tot_FInf_avg + tot_E_avg + tot_HBP_avg + tot_HBP_avg
 					tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
 					tot_OPS_adj = tot_OBP_adj + tot_SLG_adj
@@ -452,7 +452,7 @@ for game in games:
 					tot_OBP_adj = tot_H_avg + tot_CInf_avg + tot_FInf_avg + tot_E_avg + tot_HBP_avg + tot_HBP_avg
 					if(tot_AB_avg != 0):
 						tot_SLG_adj = (tot_1B_avg + tot_2B_avg*2 + tot_3B_avg*3 + tot_HR_avg*4)/tot_AB_avg
-						tot_wOBA_adj = (tot_1B_avg*0.879 + tot_2B_avg*1.241 + tot_3B_avg*1.567 + tot_HR_avg*2.01 + tot_BB_avg*0.691 + tot_HBP_avg*0.722)/(1 - tot_Sac_avg - tot_HBP_avg - tot_IBB_avg)
+						tot_wOBA_adj = (tot_1B_avg*0.879 + tot_2B_avg*1.241 + tot_3B_avg*1.567 + tot_HR_avg*2.01 + tot_BB_avg*0.691 + tot_HBP_avg*0.722)/(1 - tot_Sac_avg - tot_HBP_avg - tot_IBB_avg + 0.0001)
 					else:
 						tot_SLG_adj = 0
 						tot_wOBA_adj = 0
