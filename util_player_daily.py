@@ -4,8 +4,8 @@ import mongo_connect
 db = mongo_connect.connect()
 from datetime import datetime
 
-db.pitcher_PA_daily.remove()
-db.batter_PA_daily.remove()
+#db.pitcher_PA_daily.remove()
+#db.batter_PA_daily.remove()
 events = {}
 def reset(events):
 	events['AB'] = 0
@@ -137,8 +137,8 @@ for data in dataStatus:
 	print lastDateUpdated
 
 #get rows where date > lastDateUpdated
-batterPAs = db.batter_PA.find( { "date": {"$gt": '20160401' }} ).sort([("date", 1),("playerID", 1),("throws", 1)])
-pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": '20160401' }} ).sort([("date", 1),("playerID", 1),("stand", 1)])
+batterPAs = db.batter_PA.find( { "date": {"$gt": lastDateUpdated }} ).sort([("date", 1),("playerID", 1),("throws", 1)])
+pitcherPAs = db.pitcher_PA.find( { "date": {"$gt": lastDateUpdated }} ).sort([("date", 1),("playerID", 1),("stand", 1)])
 print batterPAs.count()
 print pitcherPAs.count()
 lastPADate = ""
