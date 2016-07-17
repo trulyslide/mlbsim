@@ -7,7 +7,7 @@ db = mongo_connect.connect()
 today = int(date.today().strftime('%Y%m%d'))
 print today
 
-gameDates = db.game_dates.find( { "date": {"$lt": today }} ).sort([("date", -1)]).limit(100)
+gameDates = db.game_dates.find( { "date": {"$lt": today }} ).sort([("date", -1)])
 
 adj = 100
 for gameDate in gameDates:
@@ -135,7 +135,8 @@ for gameDate in gameDates:
 			'Sac_adj' : adj_Sac
 		}})
 
-	adj = adj - 1
+	if(adj > 0):
+		adj = adj - 1
 	print adj
 
 
