@@ -226,7 +226,7 @@ for daily in batterDaily:
 	throws = daily['throws']
 	print playerID
 	print throws
-	print date
+	print daily['date']
 	if(lastPlayerID != 0 and (playerID != lastPlayerID or (playerID == lastPlayerID and throws != lastThrows))):
 		loadSeasonBatter(season,lastPlayerID)
 		season = reset(season)
