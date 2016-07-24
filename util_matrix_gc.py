@@ -404,3 +404,5 @@ for game in games:
 
 		},
 		upsert=True)
+	except:
+		print "fuckyou"
