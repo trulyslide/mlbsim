@@ -30,8 +30,8 @@ for game in games:
 	gameID = game['gameday_link']
 	print gameID
 	gcLink = "http://gd2.mlb.com/components/game/mlb/year_" + year + "/month_" + month + "/day_" + day + "/gid_" + gameID + "/gamecenter.xml"
-	urlData = urllib2.urlopen(gcLink)
 	try:
+		urlData = urllib2.urlopen(gcLink)
 		gcData = ET.parse(urllib2.urlopen(gcLink)).getroot()
 		for child in gcData.getchildren():
 			if child.tag == 'probables':
@@ -404,5 +404,5 @@ for game in games:
 
 		},
 		upsert=True)
-	except:
-		print "fuckyou"
+	except urllib2.HTTPError, e:
+		print "not found"
