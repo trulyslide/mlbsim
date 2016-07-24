@@ -31,8 +31,8 @@ for game in games:
 	print gameID
 	gcLink = "http://gd2.mlb.com/components/game/mlb/year_" + year + "/month_" + month + "/day_" + day + "/gid_" + gameID + "/gamecenter.xml"
 	urlData = urllib2.urlopen(gcLink)
-	if(urlData.code == 200):
-		gcData = ET.parse(urlData).getroot()
+	try:
+		gcData = ET.parse(urllib2.urlopen(gcLink)).getroot()
 		for child in gcData.getchildren():
 			if child.tag == 'probables':
 				for child2 in child.getchildren():
@@ -51,7 +51,7 @@ for game in games:
 							if child3.tag == 'player_id':
 								print child3.text
 								awayStarter = child3.text
-	
+		
 		if(awayStarter == None):
 			awayStarter = 0
 		if(homeStarter == None):
